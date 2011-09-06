@@ -11,12 +11,25 @@ FONT_NAME = ('Verdana', 'Helvetica', 'Arial')
 window = pyglet.window.Window()
 
 class Tile:
-  def __init__(self, x, y, width, height, batch):
+  WATER=1
+  GRASS=2
+  FOREST=3
+  HILL=4
+  MOUNTAIN=5
+
+  colors= {
+      WATER: (0, 0, 128, 255),
+      GRASS: (0, 200, 0, 255),
+      FOREST: (0, 128, 0, 255),
+      HILL: (120, 120, 0, 255),
+      MOUNTAIN: (128, 128, 128, 255)
+      }
+  def __init__(self, x, y, width, height, terrain, batch):
     self.x = x * width
     self.y = y * height
     self.width = width
     self.height = height
-    self.color = (random.randrange(255),  random.randrange(255), random.randrange(255), 255)
+    self.color = Tile.colors.get(terrain)
     self.add_to_batch(batch)
 
   def add_to_batch(self, batch):
@@ -28,7 +41,7 @@ class Tile:
 class WorldMap:
   def __init__(self):
     self.batch = pyglet.graphics.Batch()
-    self.tiles = [[Tile(x, y, 6, 6, self.batch) for x in range(100)] for y in range(100)]
+    self.tiles = [[Tile(x, y, 6, 6, random.randrange(1, 6), self.batch) for x in range(100)] for y in range(100)]
     return
 
   def draw(self):
