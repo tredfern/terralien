@@ -41,7 +41,7 @@ class Tile:
 class WorldMap:
   def __init__(self):
     self.batch = pyglet.graphics.Batch()
-    self.tiles = [[Tile(x, y, 6, 6, random.randrange(1, 6), self.batch) for x in range(100)] for y in range(100)]
+    self.tiles = [[Tile(x, y, 32, 32, random.randrange(1, 6), self.batch) for x in range(100)] for y in range(100)]
     return
 
   def draw(self):
@@ -71,6 +71,10 @@ def on_key_press(symbol, modifiers):
     camera.pan(camera.scale, pi)
   elif symbol == key.UP:
     camera.pan(camera.scale, 0)
+  elif symbol == key.PAGEUP:
+    camera.zoom(2)
+  elif symbol == key.PAGEDOWN:
+    camera.zoom(0.5)
   return
 
 def update(dt):
