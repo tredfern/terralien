@@ -26,23 +26,34 @@ class Unit:
         ('v2i', (self.x,self.y,self.x+self.width,self.y, self.x+self.width, self.y+self.width, self.x, self.y+self.width)),
         ('c4B', self.color * 4))
 
+class Battle:
+  def __init__(self):
+    self.batch = pyglet.graphics.Batch()
+    self.units = []
+
+  def add_unit(self, new_unit):
+    new_unit.add_to_batch(self.batch)
+    self.units.append(new_unit)
+
+  def draw(self):
+    self.batch.draw()
+
+
 
 FONT_NAME = ('Verdana', 'Helvetica', 'Arial')
 window = pyglet.window.Window()
 camera = Camera((100,100), 100)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
-a_batch = pyglet.graphics.Batch()
-a_unit = Unit(100, 100, 1)
-a_unit.add_to_batch(a_batch)
-other_team = Unit(50, 50, 2)
-other_team.add_to_batch(a_batch)
+battle = Battle()
+battle.add_unit(Unit(100, 100, 1))
+battle.add_unit(Unit(150, 150, 2))
 
 @window.event
 def on_draw():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     camera.focus(window.width, window.height)
 
-    a_batch.draw()
+    battle.draw()
     camera.hud_mode(window.width, window.height)
     fps_display.draw()
 
