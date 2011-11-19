@@ -2,10 +2,12 @@
 
 import pyglet
 import random
+from primitives import *
 from math import pi
 from camera import Camera
 from pyglet.gl import *
 from pyglet.window import key
+from euclid import *
 
 team_colors= {
       1: (0, 128, 0, 255),
@@ -14,17 +16,26 @@ team_colors= {
 
 class Unit:
   def __init__(self, x, y, team):
-    self.x = x
-    self.y = y
+    self.location = Point2(x,y)
     self.team = team
     self.width = 16
     self.height = 16
     self.color = team_colors.get(team)
+    self.attack_range = 32
 
   def add_to_batch(self, batch):
     batch.add(4, GL_QUADS, None ,
-        ('v2i', (self.x,self.y,self.x+self.width,self.y, self.x+self.width, self.y+self.width, self.x, self.y+self.width)),
+        ('v2i', (self.location.x,self.location.y,self.location.x+self.width,self.location.y, self.location.x+self.width, self.location.y+self.width, self.location.x, self.location.y+self.width)),
         ('c4B', self.color * 4))
+    add_circle(batch, self.location.x, self.location.y, self.attack_range, (0, 0, 255, 255))
+  def update(self, dt, battle):
+    think(dt, battle)
+    return
+
+  def think(dt, battle):
+    #look for an enemy
+    enemies = battle.locate_enemies_in_range(self.location, self.attack_range)
+
 
 class Battle:
   def __init__(self):
@@ -38,6 +49,16 @@ class Battle:
   def draw(self):
     self.batch.draw()
 
+  def update(self, dt):
+    for unit in self.units:
+      unit.update(dt, self)
+
+  def locate_enemies_in_range(self, location, radius):
+    for target_unit in self.units:
+      if target_unit.team != source_unit.team:
+        if location.distance(target_unit) < radius:
+          label = pyglet.text.Label('Hello, world', font_name='Times New Roman', font_size=36, x=10, y=10)
+          label.draw()
 
 
 FONT_NAME = ('Verdana', 'Helvetica', 'Arial')
