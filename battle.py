@@ -35,11 +35,8 @@ class Unit:
   def think(self, dt, battle):
     #look for an enemy
     enemies = battle.locate_enemies_in_range(self, self.attack_range)
-    if enemies:
-      e = enemies[0]
+    for e in enemies:
       add_line(battle.batch, self.location.x, self.location.y, e.location.x, e.location.y, (128, 128, 128, 255))
-
-
 
 class Battle:
   def __init__(self):
@@ -70,8 +67,11 @@ window = pyglet.window.Window()
 camera = Camera((100,100), 100)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
 battle = Battle()
-battle.add_unit(Unit(100, 100, 1))
-battle.add_unit(Unit(150, 150, 2))
+for n in range(20):
+  battle.add_unit(Unit(random.randrange(1000), random.randrange(1000), 1))
+
+for n in range(20):
+  battle.add_unit(Unit(random.randrange(1000), random.randrange(1000), 2))
 
 @window.event
 def on_draw():
