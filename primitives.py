@@ -20,21 +20,25 @@ class SmoothLineGroup(pyglet.graphics.Group):
     def __eq__(self, other):
         return self.__class__ is other.__class__
 
-def add_circle(batch, x, y, radius, color, num_points=20, antialised=True):
+def add_circle(batch, x, y, radius, color, num_points=30, antialised=True):
     l = []
+    angle1=0
     for n in range(num_points):
-        angle = (math.pi * 2 * n) / num_points
-        l.append(int(x + radius * math.cos(angle)))
-        l.append(int(y + radius * math.sin(angle)))
-    l.append(int(x + radius * 1))
-    l.append(int(y))
-    num_points += 3
-    l[0:0] = l[0:2]
-    l.extend(l[-2:])
+        angle2 = (math.pi * 2 * n+1) / num_points
+        l.append(x + radius * math.cos(angle1))
+        l.append(y + radius * math.sin(angle1))
+        l.append(x + radius * math.cos(angle2))
+        l.append(y + radius * math.sin(angle2))
+        angle1 = angle2
+
+    l.append(x + radius * math.cos(angle1))
+    l.append(y + radius * math.sin(angle1))
+    l.append(x + radius * math.cos(0))
+    l.append(y + radius * math.sin(0))
+    vertices_count = len(l)/2 
     if antialised:
         group = SmoothLineGroup()
     else:
         group = None
-    return batch.add(num_points, GL_LINE_STRIP, group, ('v2i', l),
-        ('c4B', color*num_points))
-
+    return batch.add(vertices_count, GL_LINES, group, ('v2f', l),
+        ('c4B', color*vertices_count))
