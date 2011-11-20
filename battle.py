@@ -21,20 +21,24 @@ class Unit:
     self.width = 16
     self.height = 16
     self.color = team_colors.get(team)
-    self.attack_range = 32
+    self.attack_range = 128
 
   def add_to_batch(self, batch):
     batch.add(4, GL_QUADS, None ,
         ('v2i', (self.location.x,self.location.y,self.location.x+self.width,self.location.y, self.location.x+self.width, self.location.y+self.width, self.location.x, self.location.y+self.width)),
         ('c4B', self.color * 4))
-    add_circle(batch, self.location.x, self.location.y, self.attack_range, (0, 0, 255, 255))
+    add_circle(batch, self.location.x, self.location.y, self.attack_range, (255, 0, 255, 255))
   def update(self, dt, battle):
-    think(dt, battle)
+    self.think(dt, battle)
     return
 
-  def think(dt, battle):
+  def think(self, dt, battle):
     #look for an enemy
-    enemies = battle.locate_enemies_in_range(self.location, self.attack_range)
+    enemies = battle.locate_enemies_in_range(self, self.attack_range)
+    if enemies:
+      e = enemies[0]
+      add_line(battle.batch, self.location.x, self.location.y, e.location.x, e.location.y, (128, 128, 128, 255))
+
 
 
 class Battle:
@@ -53,13 +57,13 @@ class Battle:
     for unit in self.units:
       unit.update(dt, self)
 
-  def locate_enemies_in_range(self, location, radius):
+  def locate_enemies_in_range(self, source_unit, radius):
+    e = []
     for target_unit in self.units:
       if target_unit.team != source_unit.team:
-        if location.distance(target_unit) < radius:
-          label = pyglet.text.Label('Hello, world', font_name='Times New Roman', font_size=36, x=10, y=10)
-          label.draw()
-
+        if source_unit.location.distance(target_unit.location) < radius:
+          e.append(target_unit)
+    return e
 
 FONT_NAME = ('Verdana', 'Helvetica', 'Arial')
 window = pyglet.window.Window()
@@ -96,6 +100,7 @@ def on_key_press(symbol, modifiers):
 
 def update(dt):
   camera.update()
+  battle.update(dt)
   return
 
 pyglet.clock.schedule_interval(update, 1/60.)

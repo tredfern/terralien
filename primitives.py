@@ -42,3 +42,8 @@ def add_circle(batch, x, y, radius, color, num_points=30, antialised=True):
         group = None
     return batch.add(vertices_count, GL_LINES, group, ('v2f', l),
         ('c4B', color*vertices_count))
+
+def add_line(batch, x1, y1, x2, y2, color):
+  l = (x1, y1, x2, y2)
+  return batch.add(2, GL_LINES, None, ('v2f', l),
+        ('c4B', color*2))
