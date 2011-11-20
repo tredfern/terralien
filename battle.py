@@ -24,8 +24,14 @@ class Unit:
     self.attack_range = 128
 
   def add_to_batch(self, batch):
-    batch.add(4, GL_QUADS, None ,
-        ('v2i', (self.location.x,self.location.y,self.location.x+self.width,self.location.y, self.location.x+self.width, self.location.y+self.width, self.location.x, self.location.y+self.width)),
+    half_width = self.width /2
+    half_height = self.height /2
+    batch.add_indexed(4, GL_TRIANGLES, None,
+        [0, 1, 2, 0, 2, 3],
+        ('v2i', (self.location.x,self.location.y,
+                 self.location.x-half_width,self.location.y-half_height, 
+                 self.location.x, self.location.y+half_height, 
+                 self.location.x+half_width, self.location.y-half_height)),
         ('c4B', self.color * 4))
     add_circle(batch, self.location.x, self.location.y, self.attack_range, (255, 0, 255, 255))
   def update(self, dt, battle):
