@@ -34,7 +34,7 @@ class Unit:
     self.height = 16
     self.color = team_colors.get(team)
     self.attack_range = 128
-    self.rotation = 0
+    self.rotation = random.randrange(360)
     self.create_arrow_overlay()
     self.group = UnitRenderGroup()
     self.group.set_unit(self) 
