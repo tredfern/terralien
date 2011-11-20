@@ -14,6 +14,18 @@ team_colors= {
       2: (128, 0, 0, 255)
       }
 
+class UnitRenderGroup(pyglet.graphics.Group):
+  def set_unit(self, unit):
+    self.unit = unit
+  def set_state(self):
+    glPushMatrix()
+    glTranslatef(self.unit.location.x, self.unit.location.y, 0)
+    glRotatef(self.unit.rotation, 0, 0, 1)
+
+  def unset_state(self):
+    glPopMatrix()
+
+
 class Unit:
   def __init__(self, x, y, team):
     self.location = Point2(x,y)
@@ -22,16 +34,24 @@ class Unit:
     self.height = 16
     self.color = team_colors.get(team)
     self.attack_range = 128
+    self.rotation = 0
+    self.create_arrow_overlay()
+    self.group = UnitRenderGroup()
+    self.group.set_unit(self) 
 
-  def add_to_batch(self, batch):
+  def create_arrow_overlay(self):
     half_width = self.width /2
     half_height = self.height /2
-    batch.add_indexed(4, GL_TRIANGLES, None,
-        [0, 1, 2, 0, 2, 3],
-        ('v2i', (self.location.x,self.location.y,
-                 self.location.x-half_width,self.location.y-half_height, 
-                 self.location.x, self.location.y+half_height, 
-                 self.location.x+half_width, self.location.y-half_height)),
+    self.arrow_verts = (0, 0,
+                 -half_width,-half_height, 
+                 0, half_height, 
+                 half_width, -half_height)
+    self.arrow_indices = [0, 1, 2, 0, 2, 3]
+
+  def add_to_batch(self, batch):
+    batch.add_indexed(4, GL_TRIANGLES, self.group,
+        self.arrow_indices,
+        ('v2i', self.arrow_verts),
         ('c4B', self.color * 4))
     add_circle(batch, self.location.x, self.location.y, self.attack_range, (255, 0, 255, 255))
   def update(self, dt, battle):
