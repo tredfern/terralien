@@ -14,6 +14,9 @@ team_colors= {
       2: (128, 0, 0, 255)
       }
 
+def angle_length_to_vector2(angle, length):
+  return Vector2(math.cos(math.radians(angle)) * length, math.sin(math.radians(angle)) * length)
+
 class UnitRenderGroup(pyglet.graphics.Group):
   def set_unit(self, unit):
     self.unit = unit
@@ -38,14 +41,16 @@ class Unit:
     self.create_arrow_overlay()
     self.group = UnitRenderGroup()
     self.group.set_unit(self) 
+    self.velocity = 300
+    self.move_vector = angle_length_to_vector2(self.rotation, self.velocity)
 
   def create_arrow_overlay(self):
     half_width = self.width /2
     half_height = self.height /2
     self.arrow_verts = (0, 0,
-                 -half_width,-half_height, 
-                 0, half_height, 
-                 half_width, -half_height)
+                 -half_width,+half_height, 
+                 self.width, 0, 
+                 -half_width, -half_height)
     self.arrow_indices = [0, 1, 2, 0, 2, 3]
 
   def add_to_batch(self, batch):
@@ -53,16 +58,22 @@ class Unit:
         self.arrow_indices,
         ('v2i', self.arrow_verts),
         ('c4B', self.color * 4))
-    add_circle(batch, self.location.x, self.location.y, self.attack_range, (255, 0, 255, 255))
+    #add_circle(batch, self.location.x, self.location.y, self.attack_range, (255, 0, 255, 255))
   def update(self, dt, battle):
-    self.think(dt, battle)
+    #self.think(dt, battle)
+    self.move(dt, battle)
     return
+
+  def move(self, dt, battle):
+    #update movement based on vector
+    self.location += self.move_vector * dt
+    self.rotation += random.randrange(-3, 3)
+    self.move_vector = angle_length_to_vector2(self.rotation, self.velocity)
+
 
   def think(self, dt, battle):
     #look for an enemy
     enemies = battle.locate_enemies_in_range(self, self.attack_range)
-    for e in enemies:
-      add_line(battle.batch, self.location.x, self.location.y, e.location.x, e.location.y, (128, 128, 128, 255))
 
 class Battle:
   def __init__(self):
@@ -93,10 +104,10 @@ window = pyglet.window.Window()
 camera = Camera((100,100), 100)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
 battle = Battle()
-for n in range(20):
+for n in range(200):
   battle.add_unit(Unit(random.randrange(1000), random.randrange(1000), 1))
 
-for n in range(20):
+for n in range(200):
   battle.add_unit(Unit(random.randrange(1000), random.randrange(1000), 2))
 
 @window.event
@@ -104,7 +115,7 @@ def on_draw():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     camera.focus(window.width, window.height)
 
-    battle.draw()
+    #battle.draw()
     camera.hud_mode(window.width, window.height)
     fps_display.draw()
 
