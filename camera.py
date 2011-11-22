@@ -5,6 +5,7 @@ and orientation on screen
 """
 from __future__ import division
 from math import sin, cos
+from geometry import *
 
 from pyglet.gl import (
     glLoadIdentity, glMatrixMode, gluLookAt, gluOrtho2D,
@@ -33,6 +34,7 @@ class Camera(object):
             angle = 0
         self.angle = angle
         self.target = Target(self)
+        self.bounding_rect = Rect(0,0,0,0)
 
 
     def zoom(self, factor):
@@ -51,6 +53,10 @@ class Camera(object):
         self.y += (self.target.y - self.y) * 0.1
         self.scale += (self.target.scale - self.scale) * 0.1
         self.angle += (self.target.angle - self.angle) * 0.1
+        self.bounding_rect = rect_from_coordinates(self.x + (-self.scale * self.aspect),
+                                  self.x + self.scale * self.aspect,
+                                  self.y -self.scale,
+                                  self.y + self.scale)
 
 
     def focus(self, width, height):
@@ -60,6 +66,7 @@ class Camera(object):
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
         aspect = width / height
+        self.aspect = aspect
         gluOrtho2D(
             -self.scale * aspect,
             +self.scale * aspect,
@@ -81,3 +88,6 @@ class Camera(object):
         gluOrtho2D(0, width, 0, height)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
+
+    def inspect(self):
+      return "Camera: x={}, y={}, scale={}, aspect={}".format(self.x, self.y, self.scale, self.aspect)

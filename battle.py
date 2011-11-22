@@ -5,6 +5,8 @@ import random
 from primitives import *
 from math import pi
 from camera import Camera
+from geometry import * 
+from quadtree import * 
 from pyglet.gl import *
 from pyglet.window import key
 from euclid import *
@@ -43,6 +45,11 @@ class Unit:
     self.group.set_unit(self) 
     self.velocity = 300
     self.move_vector = angle_length_to_vector2(self.rotation, self.velocity)
+    self.batch = pyglet.graphics.Batch()
+    self.add_to_batch(self.batch)
+
+  def bounding_rect(self):
+    return Rect(self.location.x, self.location.y, self.width, self.height)
 
   def create_arrow_overlay(self):
     half_width = self.width /2
@@ -75,21 +82,28 @@ class Unit:
     #look for an enemy
     enemies = battle.locate_enemies_in_range(self, self.attack_range)
 
+  def draw(self):
+    self.batch.draw()
+
 class Battle:
   def __init__(self):
     self.batch = pyglet.graphics.Batch()
     self.units = []
+    self._tree = QuadTree(Rect(-10000, -10000, 20000, 20000))
 
   def add_unit(self, new_unit):
     new_unit.add_to_batch(self.batch)
     self.units.append(new_unit)
 
-  def draw(self):
-    self.batch.draw()
+  def draw(self, ):
+    for unit in self._tree.get_things(camera.bounding_rect):
+      unit.draw()
 
   def update(self, dt):
+    self._tree = QuadTree(Rect(-10000, -10000, 20000, 20000))
     for unit in self.units:
-      unit.update(dt, self)
+      #unit.update(dt, self)
+      self._tree.add_thing(unit, unit.bounding_rect)
 
   def locate_enemies_in_range(self, source_unit, radius):
     e = []
@@ -101,7 +115,7 @@ class Battle:
 
 FONT_NAME = ('Verdana', 'Helvetica', 'Arial')
 window = pyglet.window.Window()
-camera = Camera((100,100), 100)
+camera = Camera((100,100), 2)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
 battle = Battle()
 for n in range(200):
@@ -114,8 +128,17 @@ for n in range(200):
 def on_draw():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     camera.focus(window.width, window.height)
-
-    #battle.draw()
+    pyglet.graphics.draw(8, pyglet.gl.GL_LINES,
+        ('v2f', (camera.bounding_rect.left + 2, camera.bounding_rect.bottom +2,
+          camera.bounding_rect.left + 2, camera.bounding_rect.top-2 ,
+          camera.bounding_rect.left + 2, camera.bounding_rect.top-2 ,
+          camera.bounding_rect.right-2 , camera.bounding_rect.top-2 ,
+          camera.bounding_rect.right-2 , camera.bounding_rect.top-2 ,
+          camera.bounding_rect.right-2 , camera.bounding_rect.bottom +2,
+          camera.bounding_rect.right-2 , camera.bounding_rect.bottom +2,
+          camera.bounding_rect.left + 2, camera.bounding_rect.bottom + 2
+          )))
+    battle.draw()
     camera.hud_mode(window.width, window.height)
     fps_display.draw()
 
