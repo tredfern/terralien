@@ -6,7 +6,7 @@ from primitives import *
 from math import pi
 from camera import Camera
 from geometry import * 
-from quadtree import * 
+from scene import * 
 from pyglet.gl import *
 from pyglet.window import key
 from euclid import *
@@ -102,7 +102,7 @@ class Battle:
   def update(self, dt):
     self._tree = QuadTree(Rect(-10000, -10000, 20000, 20000))
     for unit in self.units:
-      #unit.update(dt, self)
+      unit.update(dt, self)
       self._tree.add_thing(unit, unit.bounding_rect)
 
   def locate_enemies_in_range(self, source_unit, radius):
@@ -114,7 +114,7 @@ class Battle:
     return e
 
 FONT_NAME = ('Verdana', 'Helvetica', 'Arial')
-window = pyglet.window.Window()
+window = pyglet.window.Window(800, 600)
 camera = Camera((100,100), 2)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
 battle = Battle()
@@ -128,16 +128,6 @@ for n in range(200):
 def on_draw():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     camera.focus(window.width, window.height)
-    pyglet.graphics.draw(8, pyglet.gl.GL_LINES,
-        ('v2f', (camera.bounding_rect.left + 2, camera.bounding_rect.bottom +2,
-          camera.bounding_rect.left + 2, camera.bounding_rect.top-2 ,
-          camera.bounding_rect.left + 2, camera.bounding_rect.top-2 ,
-          camera.bounding_rect.right-2 , camera.bounding_rect.top-2 ,
-          camera.bounding_rect.right-2 , camera.bounding_rect.top-2 ,
-          camera.bounding_rect.right-2 , camera.bounding_rect.bottom +2,
-          camera.bounding_rect.right-2 , camera.bounding_rect.bottom +2,
-          camera.bounding_rect.left + 2, camera.bounding_rect.bottom + 2
-          )))
     battle.draw()
     camera.hud_mode(window.width, window.height)
     fps_display.draw()
