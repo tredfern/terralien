@@ -48,6 +48,7 @@ class Unit:
     self.batch = pyglet.graphics.Batch()
     self.add_to_batch(self.batch)
 
+  @property
   def bounding_rect(self):
     return Rect(self.location.x, self.location.y, self.width, self.height)
 

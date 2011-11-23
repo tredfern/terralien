@@ -5,10 +5,19 @@ def rect_from_coordinates(left, right, bottom, top):
 
 class Rect():
   def __init__(self, x, y, width, height):
-    self.x = x
-    self.y = y
-    self.width = width
-    self.height = height
+    if width < 0:
+      self.x = x - abs(width)
+      self.width = abs(width)
+    else:
+      self.x = x
+      self.width = width
+
+    if height < 0:
+      self.y = y - abs(height)
+      self.height = abs(height)
+    else:
+      self.y = y
+      self.height = height
 
   @property
   def left(self):
@@ -21,6 +30,10 @@ class Rect():
   @property
   def right(self):
     return self.x + self.width
+
+  @property
+  def center(self):
+    return Point2(self.x + self.width/2, self.y + self.height/2)
 
   @property
   def top(self):
