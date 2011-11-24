@@ -22,5 +22,3 @@ class TestQuadTree(unittest.TestCase):
   def test_divide_node_creates_four_children(self):
     self.qt.divide_node()
     self.assertEqual(len(self.qt.children),4)
-
-
