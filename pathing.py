@@ -3,8 +3,8 @@
 from euclid import *
 import random
 
-width = 50
-height = 50
+width = 100
+height = 100
 
 
 class PathNode():
@@ -86,7 +86,7 @@ def get_neighbor_nodes(point):
   for x in range(-1, 2):
     for y in range(-1, 2):
       pt = Point2(point.x + x, point.y + y)
-      if pt.x >= 0 and pt.x < width and pt.y >= 0 and pt.y < height:
+      if pt.x >= 0 and pt.x < width and pt.y >= 0 and pt.y < height and not blocking_tile(pt):
         neighbors.append(pt)
 
   return neighbors
@@ -100,6 +100,8 @@ def point_in_path(point, path):
       return True
   return False
 
+def blocking_tile(pt):
+  return tile_map[pt.y][pt.x]  == 0
 
 
 tile_map = [[get_random_terrain() for x in range(width)] for y in range(height)]
