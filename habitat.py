@@ -1,14 +1,14 @@
 import pyglet
 import random
+from euclid import *
+from euclidextensions import *
 from drawing import *
 
 class Habitat:
   def __init__(self, x, y, size):
-    self.x = x
-    self.y = y
-    self.size = size
+    self.boundary = Circle(Point2(x,y) ,float(size))
     self.batch = pyglet.graphics.Batch()
-    add_circle(self.batch, self.x, self.y, size, (255,0,0, 255))
+    add_circle(self.batch, self.boundary.c.x, self.boundary.c.y, size, (255,0,0, 255))
 
   def draw(self):
     self.batch.draw()
@@ -27,9 +27,19 @@ class Map:
     x = random.randrange(self.map_width)
     y = random.randrange(self.map_height)
     radius = 2500 + random.randrange(2500)
-    habitat = Habitat(x, y, radius)
-    self.habitats.append(habitat)
+    if self.is_habitat_valid(x, y, radius):
+      habitat = Habitat(x, y, radius)
+      self.habitats.append(habitat)
     
   def draw(self):
     for h in self.habitats:
       h.draw()
+
+  def is_habitat_valid(self, x, y, size):
+    c = Circle(Point2(x, y), float(size))
+    for h in self.habitats:
+      if h.boundary.overlap(c):
+        return False
+      
+    return True
+    

@@ -15,11 +15,12 @@ FONT_NAME = ('Tahoma')
 window = pyglet.window.Window(800, 600)
 camera = Camera((100,100), 100)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
-map_width = 100000
-map_height = 100000
+map_width = 50000
+map_height = 50000
+habitats = 10
 
   
-map_info = Map(50)
+map_info = Map(10, map_width, map_height)
 
 @window.event
 def on_draw():
