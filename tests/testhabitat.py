@@ -26,6 +26,13 @@ class TestHabitat(unittest.TestCase):
     habitat_2.link_to(habitat_1)
     self.assertEqual(len(habitat_1.habitat_links), 1)
     self.assertEqual(len(habitat_2.habitat_links), 1)
+  
+  def test_habitats_dont_link_to_themselves(self):
+    habitat = Habitat(10, 20, 1000)
+    habitat.link_to(habitat)
+    self.assertFalse(habitat.is_linked_to(habitat))
+    self.assertEqual(len(habitat.habitat_links), 0)
+
 
 class TestMap(unittest.TestCase):
   def setUp(self):

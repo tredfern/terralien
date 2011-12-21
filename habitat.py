@@ -15,12 +15,13 @@ class Habitat:
     self.batch.draw()
 
   def link_to(self, h):
-    if self.is_linked_to(h):
+    if self.is_linked_to(h) or h == self:
       return
 
     self.habitat_links.append(h)
     h.link_to(self)
-    add_line(self.batch, self.boundary.c.x, self.boundary.c.y, h.boundary.c.x, h.boundary.c.y, (0,255,0,255))
+    c = self.boundary.connect(h.boundary)
+    add_line(self.batch, c.p1.x, c.p1.y, c.p2.x, c.p2.y, (0,255,0,255))
 
   def is_linked_to(self, h):
     return self.habitat_links.count(h) > 0
