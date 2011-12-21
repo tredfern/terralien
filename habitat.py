@@ -9,10 +9,20 @@ class Habitat:
     self.boundary = Circle(Point2(x,y) ,float(size))
     self.batch = pyglet.graphics.Batch()
     add_circle(self.batch, self.boundary.c.x, self.boundary.c.y, size, (255,0,0, 255))
+    self.habitat_links = []
 
   def draw(self):
     self.batch.draw()
-    
+
+  def link_to(self, h):
+    if self.is_linked_to(h):
+      return
+
+    self.habitat_links.append(h)
+    h.link_to(self)
+
+  def is_linked_to(self, h):
+    return self.habitat_links.count(h) > 0
 
 class Map:
   def __init__(self, habitats, map_width, map_height):
