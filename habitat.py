@@ -10,6 +10,7 @@ class Habitat:
     self.batch = pyglet.graphics.Batch()
     add_circle(self.batch, self.boundary.c.x, self.boundary.c.y, size, (255,0,0, 255))
     self.habitat_links = []
+    self.critters = []
 
   def draw(self):
     self.batch.draw()
@@ -25,6 +26,16 @@ class Habitat:
 
   def is_linked_to(self, h):
     return self.habitat_links.count(h) > 0
+
+  def add_critter(self, c):
+    self.critters.append(c)
+
+  def contains_critter(self, c):
+    return self.critters.count(c) > 0
+
+  def can_move_to(self, pt):
+    return self.boundary.contains_point(pt)
+  
 
 class Map:
   def __init__(self, habitats, map_width, map_height):

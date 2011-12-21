@@ -9,6 +9,7 @@ from pyglet.window import key
 from drawing import *
 from scene import *
 from habitat import * 
+from critter import *
 
 
 FONT_NAME = ('Tahoma')

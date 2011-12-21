@@ -33,6 +33,11 @@ class TestHabitat(unittest.TestCase):
     self.assertFalse(habitat.is_linked_to(habitat))
     self.assertEqual(len(habitat.habitat_links), 0)
 
+  def test_checking_boundary_for_valid_locations(self):
+    habitat = Habitat(0, 0, 1)
+    self.assertTrue(habitat.can_move_to(Point2(0.2, 0.2)))
+    self.assertTrue(habitat.can_move_to(Point2(-0.2, -0.2)))
+    self.assertFalse(habitat.can_move_to(Point2(1, 1)))
 
 class TestMap(unittest.TestCase):
   def setUp(self):
@@ -52,10 +57,10 @@ class TestMap(unittest.TestCase):
 
   def test_habitats_are_invalid_if_they_do_collide_with_another(self):
     a_map = Map(1, 10000, 10000)
-    habitat_five = a_map.habitats[0]
-    collide_x = habitat_five.boundary.c.x + habitat_five.boundary.r / 2
-    collide_y = habitat_five.boundary.c.y + habitat_five.boundary.r / 2
-    radius = habitat_five.boundary.r / 2 -10
+    habitat = a_map.habitats[0]
+    collide_x = habitat.boundary.c.x + habitat.boundary.r / 2
+    collide_y = habitat.boundary.c.y + habitat.boundary.r / 2
+    radius = habitat.boundary.r
     self.assertFalse(self.map.is_habitat_valid(collide_x, collide_y, radius))
 
 class TestMapGeneration(unittest.TestCase):

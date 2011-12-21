@@ -13,4 +13,9 @@ class TestCircleExtensions(unittest.TestCase):
     self.assertTrue(circle1.overlap(circle2))
     self.assertFalse(circle1.overlap(circle3))
     self.assertTrue(circle1.overlap(circle4))
-  
+
+  def test_circles_can_detect_points_within_it(self):
+    circle = Circle(Point2(0, 0), 1.)
+    self.assertTrue(circle.contains_point(Point2(0.2,0.2)))
+    self.assertTrue(circle.contains_point(Point2(-0.2,-0.2)))
+    self.assertFalse(circle.contains_point(Point2(2.,-2.)))
