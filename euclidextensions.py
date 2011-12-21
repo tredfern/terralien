@@ -15,3 +15,5 @@ def __circle_contains_point(self, point):
 Circle.overlap = circle_overlap
 Circle.contains_point = __circle_contains_point
 
+def angle_length_to_vector2(angle, length):
+  return Vector2(math.cos(math.radians(angle)) * length, math.sin(math.radians(angle)) * length)
