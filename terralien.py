@@ -20,8 +20,11 @@ map_width = 50000
 map_height = 50000
 habitats = 10
 
+
   
 map_info = Map(10, map_width, map_height)
+critter = Critter()
+critter.occupy(map_info.habitats[0])
 
 @window.event
 def on_draw():

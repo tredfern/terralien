@@ -6,6 +6,9 @@ def circle_overlap(self, circle):
   return distance < self.r + circle.r
 
 def __circle_contains_point(self, point):
+  if point == self.c:
+    return True
+
   distance = self.c.distance(point)
   return distance < self.r
 

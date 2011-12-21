@@ -43,7 +43,20 @@ def add_circle(batch, x, y, radius, color, num_points=30, antialised=True):
     return batch.add(vertices_count, GL_LINES, group, ('v2f', l),
         ('c4B', color*vertices_count))
 
-def add_line(batch, x1, y1, x2, y2, color):
+def add_line(batch, x1, y1, x2, y2, color, group=None):
   l = (x1, y1, x2, y2)
-  return batch.add(2, GL_LINES, None, ('v2f', l),
+  return batch.add(2, GL_LINES, group, ('v2f', l),
         ('c4B', color*2))
+
+def add_arrow(batch, width, height, color, group=None):
+  half_width = width / 2
+  half_height = height / 2
+  arrow_verts = (0, 0,
+               -half_width,+half_height, 
+               width, 0, 
+               -half_width, -half_height)
+  arrow_indices = [0, 1, 2, 0, 2, 3]
+  batch.add_indexed(4, GL_TRIANGLES, group,
+      arrow_indices,
+      ('v2i', arrow_verts),
+      ('c4B', color * 4))

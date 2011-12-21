@@ -9,6 +9,8 @@ class TestCritter(unittest.TestCase):
     critter.occupy(habitat)
     self.assertTrue(habitat.contains_critter(critter))
     self.assertEqual(critter.habitat, habitat)
+    #sets position to center of habitat
+    self.assertEqual(critter.position, habitat.boundary.c)
 
   def test_critters_must_stay_in_boundary_of_habitat(self):
     critter = Critter()

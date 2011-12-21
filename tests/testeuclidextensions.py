@@ -19,3 +19,4 @@ class TestCircleExtensions(unittest.TestCase):
     self.assertTrue(circle.contains_point(Point2(0.2,0.2)))
     self.assertTrue(circle.contains_point(Point2(-0.2,-0.2)))
     self.assertFalse(circle.contains_point(Point2(2.,-2.)))
+    self.assertTrue(circle.contains_point(Point2(0, 0)))
