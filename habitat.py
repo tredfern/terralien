@@ -20,6 +20,7 @@ class Habitat:
 
     self.habitat_links.append(h)
     h.link_to(self)
+    add_line(self.batch, self.boundary.c.x, self.boundary.c.y, h.boundary.c.x, h.boundary.c.y, (0,255,0,255))
 
   def is_linked_to(self, h):
     return self.habitat_links.count(h) > 0
@@ -40,6 +41,12 @@ class Map:
     if self.is_habitat_valid(x, y, radius):
       habitat = Habitat(x, y, radius)
       self.habitats.append(habitat)
+
+    #link some habitats
+    for h in self.habitats:
+      for i in range(2):
+        r = random.randrange(len(self.habitats))
+        h.link_to(self.habitats[r])
     
   def draw(self):
     for h in self.habitats:
