@@ -16,9 +16,10 @@ from pork.camera import Camera
 from pork.drawing import *
 from pork.scene import *
 
+pork.start()
 
 FONT_NAME = ('Tahoma')
-window = pyglet.window.Window(800, 600)
+window = pork.engine().window
 camera = Camera((100,100), 100)
 fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
 map_width = 50000
