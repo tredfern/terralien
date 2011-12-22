@@ -10,4 +10,3 @@ class TestPork(unittest.TestCase):
     self.assertEqual(pork.engine(), r)
     r.start.assert_called_with()
     mock_rack.assert_called_with()
-

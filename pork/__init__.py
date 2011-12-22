@@ -5,7 +5,8 @@ import pork
 import pork.rack
 
 pork_globals = { 
-    'rack' : None 
+    'rack' : None,
+    'default_font' : 'Tahoma'
     } 
 
 def start():
