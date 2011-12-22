@@ -3,6 +3,7 @@ from pyglet.gl import *
 from pyglet.window import key
 import pork
 import pork.rack
+import pork.controllers
 
 pork_globals = { 
     'rack' : None,
