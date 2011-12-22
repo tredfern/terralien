@@ -2,6 +2,9 @@
 Camera tracks a position, orientation and zoom level, and applies openGL
 transforms so that subsequent renders are drawn at the correct place, size
 and orientation on screen
+
+Found this code from:
+http://tartley.com/files/stretching_pyglets_wings/presentation/
 """
 from __future__ import division
 from math import sin, cos
