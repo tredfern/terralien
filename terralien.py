@@ -10,6 +10,10 @@ from drawing import *
 from scene import *
 from habitat import * 
 from critter import *
+import controllers
+import models
+import views
+import pork
 
 
 FONT_NAME = ('Tahoma')
