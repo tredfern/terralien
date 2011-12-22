@@ -13,11 +13,11 @@ Gameplay
 Most of this is very rough and scribbled on notes of paper but the following
 are the critical points:
 
-# You are the Intelligent Designer
-# Your units are critters that can be mutated according to your direction. 
-# Habitats will have some properties that effect the abilities of your critters while occupying them. 
-# Your society will track two major resources: Food (gotta stay alive) and Mutagens (pressure to change)
-# Being a god will also allow some abilities to effect the world. i.e. changing habitats' environment
+- You are the Intelligent Designer
+- Your units are critters that can be mutated according to your direction. 
+- Habitats will have some properties that effect the abilities of your critters while occupying them. 
+- Your society will track two major resources: Food (gotta stay alive) and Mutagens (pressure to change)
+- Being a god will also allow some abilities to effect the world. i.e. changing habitats' environment
 
 How will evolution work?
 ------------------------
