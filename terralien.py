@@ -21,10 +21,19 @@ map_height = 50000
 habitats = 10
 
 
-  
 map_info = Map(10, map_width, map_height)
-critter = Critter()
-critter.occupy(map_info.habitats[0])
+critters = []
+
+def create_critter():
+  critter = Critter()
+  critter.speed = 5 + random.randrange(10)
+  critter.set_rotation(random.randrange(360))
+  h = random.randrange(len(map_info.habitats))
+  critter.occupy(map_info.habitats[h])
+  critters.append(critter)
+  
+for r in range(100):
+  create_critter()
 
 @window.event
 def on_draw():
@@ -57,6 +66,8 @@ def on_key_press(symbol, modifiers):
   return
 
 def update(dt):
+  for c in critters:
+    c.update()
   camera.update()
   return
 

@@ -1,6 +1,8 @@
 import pyglet
 from pyglet.gl import *
 from drawing import *
+from euclidextensions import *
+import random 
 
 class CritterRenderGroup(pyglet.graphics.Group):
   def set_critter(self, critter):
@@ -20,6 +22,7 @@ class Critter():
     self.batch = pyglet.graphics.Batch()
     add_arrow(self.batch, 32, 32, (255, 255, 255, 255), self.group)
     self._rotation = 0
+    self.speed = 0
 
   @property
   def rotation(self):
@@ -41,6 +44,9 @@ class Critter():
   def set_position(self, pt):
     if self.h.can_move_to(pt):
       self.p = pt
+      return True
+    
+    return False
   
   def set_rotation(self, rot):
     while rot > 360:
@@ -51,4 +57,15 @@ class Critter():
 
   def draw(self):
     self.batch.draw()
+
+  def move(self):
+    mv = angle_length_to_vector2(self.rotation, self.speed)
+
+    if not self.set_position(self.position + mv):
+      self.set_rotation(self._rotation - 180)
+
+    self.set_rotation(self._rotation + random.randrange(-3, 4))
+
+  def update(self):
+    self.move()
 

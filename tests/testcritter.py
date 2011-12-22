@@ -15,6 +15,7 @@ class TestCritter(unittest.TestCase):
   def test_critters_are_initialized_with_reasonable_defaults(self):
     critter = Critter()
     self.assertEqual(critter.rotation, 0)
+    self.assertEqual(critter.speed, 0)
 
   def test_critters_can_have_their_direction_set(self):
     critter = Critter()
@@ -29,6 +30,20 @@ class TestCritter(unittest.TestCase):
     self.assertEqual(critter.rotation, 310)
     critter.set_rotation(725)
     self.assertEqual(critter.rotation, 5)
+
+  def test_critters_can_have_their_speed_set(self):
+    critter = Critter()
+    critter.speed = 10
+
+  def test_critters_move_at_their_velocity_along_their_rotation_heading(self):
+    critter = Critter()
+    habitat = Habitat(0, 0, 20000)
+    critter.set_rotation(95)
+    critter.speed = 20
+    critter.occupy(habitat)
+    critter.move()
+    expected_move = angle_length_to_vector2(95, 20)
+    self.assertEqual(critter.position, expected_move)
 
 
   def test_critters_must_stay_in_boundary_of_habitat(self):
