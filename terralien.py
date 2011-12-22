@@ -3,17 +3,18 @@
 import pyglet
 import random
 from math import pi
-from camera import Camera
 from pyglet.gl import *
 from pyglet.window import key
-from drawing import *
-from scene import *
-from habitat import * 
-from critter import *
 import controllers
 import models
+from models.habitat import *
+from models.critter import *
 import views
+
 import pork
+from pork.camera import Camera
+from pork.drawing import *
+from pork.scene import *
 
 
 FONT_NAME = ('Tahoma')

@@ -1,5 +1,5 @@
 import unittest
-from scene import *
+from pork.scene import *
 
 class TestQuadTree(unittest.TestCase):
   def setUp(self):

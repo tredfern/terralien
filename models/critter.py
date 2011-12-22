@@ -1,7 +1,7 @@
 import pyglet
 from pyglet.gl import *
-from drawing import *
-from euclidextensions import *
+from pork.drawing import *
+from pork.euclidextensions import *
 import random 
 
 class CritterRenderGroup(pyglet.graphics.Group):

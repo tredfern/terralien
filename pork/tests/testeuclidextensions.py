@@ -1,6 +1,6 @@
 import unittest
 from euclid import *
-from euclidextensions import * 
+from pork.euclidextensions import * 
 
 
 class TestCircleExtensions(unittest.TestCase):
