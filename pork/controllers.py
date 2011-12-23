@@ -1,4 +1,17 @@
 import pork
+import pyglet
 
 class BaseController():
-  pass
+  def draw(self):
+    pass
+
+  def draw_hud(self):
+    pass
+
+class PerformanceController(BaseController):
+  def __init__(self):
+    self.fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load("Tahoma", 24))
+
+  def draw_hud(self):
+    self.fps_display.draw()
+    

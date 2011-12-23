@@ -1,4 +1,5 @@
 import pyglet
+from pyglet.gl import *
 import pork
 
 class Rack(pyglet.window.Window):
@@ -14,8 +15,8 @@ class Rack(pyglet.window.Window):
     return self._controllers.pop()
 
   def on_draw(self):
-    self.clear
-    
+    self.clear()
+
     self.camera.focus(self.width, self.height)
     for c in self._controllers:
       c.draw()

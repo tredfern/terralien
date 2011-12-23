@@ -37,6 +37,7 @@ for r in range(100):
   create_critter()
 
 pork.start()
+pork.engine().push_controller(pork.controllers.PerformanceController())
 #--
 
 #@window.event

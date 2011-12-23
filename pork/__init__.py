@@ -27,17 +27,9 @@ def engine():
 #camera = pork.camera.Camera((100,100), 100)
 #fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(pork_globals['default_font'], 24))
 
-#@_window.event
-#def on_draw():
 #  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-
-# pork_globals['rack'].draw()
     
-  # Handle the camera
-  #camera.focus(window.width, window.height)
 
-  # Draw top of the screen
-#  camera.hud_mode(_window.width, _window.height)
 #  fps_display.draw()
   
 def run():
