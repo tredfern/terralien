@@ -8,5 +8,4 @@ class TestPork(unittest.TestCase):
     r = mock_rack.return_value
     pork.start()
     self.assertEqual(pork.engine(), r)
-    r.start.assert_called_with()
     mock_rack.assert_called_with()
