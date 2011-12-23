@@ -1,12 +1,10 @@
 import pyglet
 import pork
 
-class Rack():
+class Rack(pyglet.window.Window):
   def __init__(self):
+    super(Rack, self).__init__(800, 600)
     self._controllers = []
-
-  def start(self):
-    self.window = pork.window.Window(self, 800, 600)
 
   def push_controller(self, c):
     self._controllers.append(c)
@@ -14,7 +12,7 @@ class Rack():
   def pop_controller(self):
     return self._controllers.pop()
 
-  def draw(self):
+  def on_draw(self):
     print 'draw'
     for c in self._controllers:
       c.draw()

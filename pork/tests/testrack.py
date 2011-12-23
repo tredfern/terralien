@@ -1,21 +1,20 @@
-import pork 
 import unittest
 from mock import * 
+import pork 
 
-@patch("pork.window.Window")
-class TestRack(unittest.TestCase):
-  def test_it_creates_a_window(self, mock_window):
-    r = pork.rack.Rack() 
-    r.start()
-    self.assertEqual(r.window, mock_window.return_value)
-    mock_window.assert_called_with(r, 800, 600)
+# Need to mock the init method so it doesn't create the window
+# this is flawed since we need to know about the rack initializer
+# but it does prevent windows from opening up and allows us
+# to test the rack class methods that are important
+
+def mock_init(self):
+  self._controllers = []
+
+pork.rack.Rack.__init__ = mock_init
 
 class TestRackControllerManagement(unittest.TestCase):
   def setUp(self):
-    self.patcher = patch("pork.window.Window")
-    self.mock_pyg_window = self.patcher.start()
     self.rack = pork.rack.Rack()
-    self.rack.start()
 
   def test_you_can_push_controllers_onto_the_stack(self):
     c1 = pork.controllers.BaseController()
@@ -42,10 +41,6 @@ class TestRackControllerManagement(unittest.TestCase):
     self.rack.push_controller(c2)
     c1.draw = Mock()
     c2.draw = Mock()
-    self.rack.draw()
+    self.rack.on_draw()
     c1.draw.assert_called_with()
     c2.draw.assert_called_with()
-
-  def tearDown(self):
-    self.patcher.stop()
-

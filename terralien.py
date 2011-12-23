@@ -16,11 +16,6 @@ from pork.camera import Camera
 from pork.drawing import *
 from pork.scene import *
 
-FONT_NAME = ('Tahoma')
-window = pork.engine().window
-camera = Camera((100,100), 100)
-fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load(FONT_NAME, 24))
-
 ### OK Code
 map_width = 50000
 map_height = 50000
@@ -41,6 +36,7 @@ def create_critter():
 for r in range(100):
   create_critter()
 
+pork.start()
 #--
 
 #@window.event
