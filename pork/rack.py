@@ -5,6 +5,7 @@ class Rack(pyglet.window.Window):
   def __init__(self):
     super(Rack, self).__init__(800, 600)
     self._controllers = []
+    self.camera = pork.camera.Camera((100, 100), 100)
 
   def push_controller(self, c):
     self._controllers.append(c)
@@ -13,6 +14,12 @@ class Rack(pyglet.window.Window):
     return self._controllers.pop()
 
   def on_draw(self):
-    print 'draw'
+    self.clear
+    
+    self.camera.focus(self.width, self.height)
     for c in self._controllers:
       c.draw()
+
+    self.camera.hud_mode(self.width, self.height)
+    for c in self._controllers:
+      c.draw_hud()

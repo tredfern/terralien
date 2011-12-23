@@ -7,8 +7,11 @@ import pork
 # but it does prevent windows from opening up and allows us
 # to test the rack class methods that are important
 
+mock_cam = Mock()
+
 def mock_init(self):
   self._controllers = []
+  self.camera = mock_cam.return_value
 
 pork.rack.Rack.__init__ = mock_init
 
@@ -41,6 +44,18 @@ class TestRackControllerManagement(unittest.TestCase):
     self.rack.push_controller(c2)
     c1.draw = Mock()
     c2.draw = Mock()
+    c1.draw_hud = Mock()
+    c2.draw_hud = Mock()
     self.rack.on_draw()
     c1.draw.assert_called_with()
+    c1.draw_hud.assert_called_with()
     c2.draw.assert_called_with()
+    c2.draw_hud.assert_called_with()
+
+  def test_it_focuses_camera_before_drawing(self):
+    cam = mock_cam.return_value
+    self.rack.camera = cam
+    self.rack.on_draw()
+    cam.focus.assert_called_with(self.rack.width, self.rack.height)
+    cam.hud_mode.assert_called_with(self.rack.width, self.rack.height)
+

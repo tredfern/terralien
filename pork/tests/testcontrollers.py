@@ -4,5 +4,3 @@ import pork
 
 class TestBaseController(unittest.TestCase):
   pass
-
-
