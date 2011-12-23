@@ -1,4 +1,5 @@
 import pyglet
+from math import pi
 from pyglet.gl import *
 from pyglet.window import key
 import pork
@@ -14,6 +15,12 @@ class Rack(pyglet.window.Window):
 
   def pop_controller(self):
     return self._controllers.pop()
+
+  def update(self, dt):
+    self.camera.update()
+    for c in self._controllers:
+      c.update(dt)
+    
 
   def on_draw(self):
     self.clear()

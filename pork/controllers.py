@@ -8,6 +8,9 @@ class BaseController():
   def draw_hud(self):
     pass
 
+  def update(self, dt):
+    pass
+
 class PerformanceController(BaseController):
   def __init__(self):
     self.fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load("Tahoma", 24))

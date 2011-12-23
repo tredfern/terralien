@@ -1,4 +1,5 @@
 import pyglet
+from math import pi
 from pyglet.gl import *
 from pyglet.window import key
 import pork
@@ -21,4 +22,5 @@ def engine():
   return pork_globals['rack'];
   
 def run():
+  pyglet.clock.schedule_interval(pork_globals['rack'].update, 1/60.)
   pyglet.app.run()

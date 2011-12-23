@@ -59,3 +59,14 @@ class TestRackControllerManagement(unittest.TestCase):
     cam.focus.assert_called_with(self.rack.width, self.rack.height)
     cam.hud_mode.assert_called_with(self.rack.width, self.rack.height)
 
+  def test_it_updates_all_the_controllers(self):
+    c1 = pork.controllers.BaseController()
+    c2 = pork.controllers.BaseController()
+    self.rack.push_controller(c1)
+    self.rack.push_controller(c2)
+    c1.update = Mock()
+    c2.update = Mock()
+    self.rack.update(1234)
+    c1.update.assert_called_with(1234)
+    c2.update.assert_called_with(1234)
+
