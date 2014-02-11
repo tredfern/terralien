@@ -13,7 +13,7 @@ class BaseController():
 
 class PerformanceController(BaseController):
   def __init__(self):
-    self.fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load("Tahoma", 24))
+    self.fps_display = pyglet.clock.ClockDisplay(font=pyglet.font.load("Arial", 24))
 
   def draw_hud(self):
     self.fps_display.draw()

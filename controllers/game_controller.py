@@ -7,7 +7,7 @@ class GameController(pork.controllers.BaseController):
     self.map_info  = Map(10, 50000, 50000)
     self.critters = []
 
-    for r in range(100):
+    for r in range(300):
       self.create_critter()
 
   def create_critter(self):

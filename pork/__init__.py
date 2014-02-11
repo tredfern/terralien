@@ -7,7 +7,6 @@ import pork.rack
 import pork.controllers
 import pork.camera
 
-_window = None
 pork_globals = { 
     'rack' : None,
     'default_font' : 'Tahoma'
@@ -15,8 +14,6 @@ pork_globals = {
 
 def start():
   pork_globals['rack'] = pork.rack.Rack()
-  global _window
-  _window = pork_globals['rack']
 
 def engine():
   return pork_globals['rack'];
