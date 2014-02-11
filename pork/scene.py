@@ -1,4 +1,4 @@
-from geometry import * 
+from pork.geometry import * 
 
 quad_tree_consts = {
     "max_level" : 10,

@@ -8,7 +8,7 @@ http://tartley.com/files/stretching_pyglets_wings/presentation/
 """
 from __future__ import division
 from math import sin, cos
-from geometry import *
+from pork.geometry import *
 
 from pyglet.gl import (
     glLoadIdentity, glMatrixMode, gluLookAt, gluOrtho2D,

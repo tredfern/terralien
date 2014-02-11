@@ -35,7 +35,7 @@ def add_circle(batch, x, y, radius, color, num_points=30, antialised=True):
     l.append(y + radius * math.sin(angle1))
     l.append(x + radius * math.cos(0))
     l.append(y + radius * math.sin(0))
-    vertices_count = len(l)/2 
+    vertices_count = int(len(l)/2 )
     if antialised:
         group = SmoothLineGroup()
     else:
@@ -49,8 +49,8 @@ def add_line(batch, x1, y1, x2, y2, color, group=None):
         ('c4B', color*2))
 
 def add_arrow(batch, width, height, color, group=None):
-  half_width = width / 2
-  half_height = height / 2
+  half_width = int(width / 2)
+  half_height = int(height / 2)
   arrow_verts = (0, 0,
                -half_width,+half_height, 
                width, 0, 
