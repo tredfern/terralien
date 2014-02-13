@@ -1,8 +1,8 @@
-import pork.controllers
+import pygsty.controllers
 from models.habitat import *
 from models.critter import *
 
-class GameController(pork.controllers.BaseController):
+class GameController(pygsty.controllers.BaseController):
   def __init__(self):
     self.map_info  = Map(10, 50000, 50000)
     self.critters = []

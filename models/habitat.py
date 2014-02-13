@@ -1,8 +1,8 @@
 import pyglet
 import random
 from euclid import *
-from pork.euclidextensions import *
-from pork.drawing import *
+from pygsty.euclidextensions import *
+from pygsty.drawing import *
 
 class Habitat:
   def __init__(self, x, y, size):
