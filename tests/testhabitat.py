@@ -1,5 +1,4 @@
 import unittest
-from pyglet import *
 from models.habitat import *
 
 class TestHabitat(unittest.TestCase):

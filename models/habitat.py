@@ -1,7 +1,7 @@
 import pyglet
 import random
-from euclid import *
-from pygsty.euclidextensions import *
+import pygsty
+from pygsty.euclid import *
 from pygsty.drawing import *
 
 class Habitat:

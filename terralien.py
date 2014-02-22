@@ -1,6 +1,4 @@
-#!/usr/bin/python
-import sys
-sys.path.append("../pygsty")
+
 import pygsty
 from pygsty.camera import Camera
 from pygsty.drawing import *
