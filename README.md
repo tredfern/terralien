@@ -1,11 +1,9 @@
 Terralien
 =========
 
-A prototype of a game that has been kicking around my head for many years. 
-The goal is to create a real-time strategy game that is not focused on
-maximizing the effectivness of your clicks but the ability to create and
-adapt your strategy in a world where the resources and units are regularly 
-changing.
+A variety of game ideas are in my head and this is a chance to try some things out.
+For now, it's also a point to build out a framework for me to build some games on.
+
 
 The Source
 ------------------
