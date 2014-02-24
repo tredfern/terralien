@@ -20,6 +20,7 @@ class GameController(pygsty.controllers.BaseController):
 
   def draw(self):
     self.map_info.draw()
+    pygsty.models.render_models()
 
   def update(self, dt):
     for c in self.critters:

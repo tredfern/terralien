@@ -14,8 +14,6 @@ class Habitat:
 
   def draw(self):
     self.batch.draw()
-    for c in self.critters:
-      c.draw()
 
   def link_to(self, h):
     if self.is_linked_to(h) or h == self:
