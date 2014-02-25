@@ -1,3 +1,2 @@
-import models.tilemap
+import models.map
 
-from models.tilemap import *

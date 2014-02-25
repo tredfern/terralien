@@ -6,7 +6,7 @@ class TileMap():
         self._width = w
         self._height = h
         for x in range(w * h):
-            self.tiles.append(Tile())
+            self.tiles.append(Tile(GRASS))
 
     @property
     def width(self):
@@ -18,4 +18,13 @@ class TileMap():
 
 
 class Tile():
-    pass
+    def __init__(self, terrain):
+        self._terrain = terrain
+
+
+    @property
+    def terrain(self):
+        return self._terrain
+
+GRASS = 1
+
