@@ -1,4 +1,5 @@
 import pygsty
+from pyglet.window import key
 import models.map
 
 class GameController(pygsty.controllers.BaseController):
@@ -11,3 +12,8 @@ class GameController(pygsty.controllers.BaseController):
 
     def update(self, dt):
         pass
+
+    def on_key_press(self, symbol, modifiers):
+        if symbol == key.ESCAPE:
+            pygsty.stop()
+
