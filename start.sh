@@ -1,1 +1,1 @@
-python terralien.py
+python -O terralien.py
