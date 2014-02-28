@@ -17,7 +17,6 @@ class TileMap():
                 row.append(t)
             self.tiles.append(row)
 
-
     @property
     def width(self):
         return self._width
@@ -29,16 +28,15 @@ class TileMap():
     def getTile(self, x, y):
         return self.tiles[y][x]
 
-
-
-
 class Tile():
     def __init__(self, position, terrain):
         self._position = position
         self._world_position = (position[0] * TILE_SIZE, position[1] * TILE_SIZE)
         self._terrain = terrain
-        self._rect = pygsty.graphics.Rectangle( self._world_position, 
-                (self._world_position[0] + TILE_SIZE, self._world_position[1] + TILE_SIZE) )
+        self._rect = pygsty.geometry.rect_from_coordinates( self._world_position[0], 
+                self._world_position[1],
+                self._world_position[0] + TILE_SIZE, 
+                self._world_position[1] + TILE_SIZE )
         self.add_to_batch(pygsty.models.default_batch)
 
     @property
@@ -50,7 +48,7 @@ class Tile():
         return self._rect;
 
     def add_to_batch(self, batch):
-        p = self.rect.to_primitive(self.terrain.color)
+        p = pygsty.graphics.rect_to_primitive(self.rect, self.terrain.color)
         p.add_to_batch(batch)
 
 class Terrain():
@@ -58,7 +56,7 @@ class Terrain():
 
 def grass():
     t = Terrain()
-    green = random.randint(120, 200)
+    green = random.randint(165, 175)
     t.color = (0, green, 0, 255)
     return t
 
