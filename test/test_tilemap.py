@@ -26,6 +26,6 @@ class TestTile(unittest.TestCase):
         self.assertEqual(tile.terrain, t)
 
     def test_it_is_represented_by_a_rectangle_for_its_world_coordinates(self):
-        tile = models.map.Tile((83, 42), models.map.grass())
-        test_rect = pygsty.geometry.rect_from_coordinates(83, 42, 88, 47)
+        tile = models.map.Tile((2, 3), models.map.grass())
+        test_rect = pygsty.geometry.rect_from_coordinates(10 , 15, 15, 20)
         self.assertEqual(tile.rect, test_rect)

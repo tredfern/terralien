@@ -2,6 +2,8 @@ import random
 import pygsty.models
 import pygsty.graphics
 
+TILE_SIZE = 5
+
 class TileMap():
     def __init__(self):
         super().__init__()
@@ -29,14 +31,14 @@ class TileMap():
         return self.tiles[y][x]
 
 class Tile():
-    def __init__(self, position, terrain):
+    def __init__(self, position, terrain, size=TILE_SIZE):
         self._position = position
-        self._world_position = (position[0] * TILE_SIZE, position[1] * TILE_SIZE)
+        self._world_position = (position[0] * size, position[1] * size)
         self._terrain = terrain
-        self._rect = pygsty.geometry.rect_from_coordinates( self._world_position[0], 
+        self._rect = pygsty.geometry.rect_from_coordinates( self._world_position[0],
                 self._world_position[1],
-                self._world_position[0] + TILE_SIZE, 
-                self._world_position[1] + TILE_SIZE )
+                self._world_position[0] + size,
+                self._world_position[1] + size )
         self.add_to_batch(pygsty.models.default_batch)
 
     @property
@@ -59,5 +61,3 @@ def grass():
     green = random.randint(165, 175)
     t.color = (0, green, 0, 255)
     return t
-
-TILE_SIZE = 5
