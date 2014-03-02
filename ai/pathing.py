@@ -1,11 +1,5 @@
-#!/usr/bin/python
-
-from pygsty.euclid import *
+from euclid import *
 import random
-
-width = 100
-height = 100
-
 
 class PathNode():
   def __init__(self, point, g, h):
@@ -64,7 +58,6 @@ def find_path(start_point, end_point):
         f_score[get_key(y)] = g_score[get_key(y)] + h_score[get_key(y)]
 
 
-
 def heuristic_cost_estimate(a, b):
   if a == b:
     return 0
@@ -91,9 +84,6 @@ def get_neighbor_nodes(point):
 
   return neighbors
 
-def get_random_terrain():
-  return random.randrange(4)
-
 def point_in_path(point, path):
   for pt in path:
     if point == pt:
@@ -102,26 +92,3 @@ def point_in_path(point, path):
 
 def blocking_tile(pt):
   return tile_map[pt.y][pt.x]  == 0
-
-
-tile_map = [[get_random_terrain() for x in range(width)] for y in range(height)]
-start_point = Point2(random.randrange(width), random.randrange(height))
-goal = Point2(random.randrange(width), random.randrange(height))
-path = find_path(start_point, goal)
-
-for y in range(height):
-  output = ""
-  for x in range(width):
-    cur = Point2(x, y)
-    if start_point == cur:
-      output += "S"
-    elif goal == cur:
-      output += "G"
-    elif point_in_path(cur, path):
-      output += "*"
-    elif tile_map[y][x] == 0:
-      output += "#"
-    else:
-      output += "."
-
-  print (output)
