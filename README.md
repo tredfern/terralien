@@ -24,4 +24,6 @@ For test suite and other development things
 This also utilizes the pyeuclid library. I've updated that in this project to work with Python3 as well.
 I'll probably push that up at some point in separate repo.
 
-## Requirements
+## Development Status
+
+For a history and overview of what is currently happening check out the [Change Blog](CHANGEBLOG.md)
