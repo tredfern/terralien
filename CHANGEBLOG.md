@@ -21,3 +21,17 @@ into this pasturic paradise.
 ### Goals for next update
   * Show a character on the map
   * Character should be able to move about randomly
+
+## March 1st, 2014
+
+Not much progress but hey, accomplished the goals. I have some characters
+that move about randomly. Well, it's a white square, but they can move
+any random direction. Not exactly where the code needs to lay for all this
+stuff, but the controller lightly directs them and things are happening also
+
+![Terralien Random](screenshots/terralien20140301-1.png)
+
+### Goals for next update
+  * Characters pick a goal to move to some random location
+  * Characters move to location
+  * Upon arrival they pick a different goal and move towards that
