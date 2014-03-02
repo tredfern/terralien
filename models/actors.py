@@ -30,6 +30,11 @@ class Actor(pygsty.models.VisibleModel):
         if (self.goal == None):
             self._goal = (random.randint(0, 200), random.randint(0, 200) )
 
+        x, y = self.position
+        x += random.randint(-1, 1)
+        y += random.randint(-1, 1)
+        self.moveTo(x, y)
+
     def _setupGraphics(self):
         r = pygsty.geometry.Rect(1, 1, 3, 3)
         p = pygsty.graphics.rect_to_primitive(r, (255, 255, 255, 25) )

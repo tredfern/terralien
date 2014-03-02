@@ -1,4 +1,4 @@
-from euclid import *
+from pygsty.euclid import *
 import random
 
 class PathNode():
