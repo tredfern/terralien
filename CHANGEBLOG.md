@@ -35,3 +35,15 @@ stuff, but the controller lightly directs them and things are happening also
   * Characters pick a goal to move to some random location
   * Characters move to location
   * Upon arrival they pick a different goal and move towards that
+
+
+## March 2nd, 2014
+
+Characters now pick a destination and move towards it, when they get there they
+pick a different location and move towards that. It is running around 30FPS with
+100 characters moving about and finding paths. So not bad but not good enough.
+Made some basic optimizations that sped things up but the downside is that it
+seems sometimes the actors can get stuck in some circular loops. I'll need to
+spend more time here, but for the time being the main objective is complete.
+
+Looking into adding some different terrain types now.
