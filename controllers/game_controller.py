@@ -7,6 +7,8 @@ class GameController(pygsty.controllers.BaseController):
     def __init__(self):
         self.map = models.map.TileMap()
         self.map.generate(200, 200)
+        self.map.add_lakes()
+        self.map.build_batch()
         self.characters = []
         for i in range(0,100):
             self.characters.append(models.actors.Actor(position=(100, 100) ) )

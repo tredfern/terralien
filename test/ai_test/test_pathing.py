@@ -24,7 +24,7 @@ class TestPathBuilding(unittest.TestCase):
     def test_heuristic_score_is_the_distance_between_two_points(self):
         p1 = Point2(0, 0)
         p2 = Point2(10, 100)
-        d = p1.distance(p2)
+        d = 110
 
         h_score = heuristic_cost_estimate(p1, p2)
         self.assertEqual(d, h_score, 'H Score should match distance')
@@ -46,7 +46,7 @@ class TestPathBuilding(unittest.TestCase):
 
     def test_it_returns_nothing_if_node_list_is_empty_for_the_next_node(self):
         n = find_next_node([])
-        self.assert_(n == None, 'Should not return anything if list is empty')
+        self.assertTrue(n == None, 'Should not return anything if list is empty')
 
     def test_it_can_construct_a_path_out_of_a_sequence_of_linked_nodes(self):
         n1 = PathNode(point=(1,1), g=0, h=3)
@@ -60,3 +60,6 @@ class TestPathBuilding(unittest.TestCase):
 
         path = construct_path(n4)
         self.assertEqual([n1,n2,n3,n4], path, 'Path should be a list of nodes in sequence')
+
+if __name__ == '__main__':
+    unittest.main()

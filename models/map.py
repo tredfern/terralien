@@ -20,6 +20,29 @@ class TileMap():
                 row.append(t)
             self.tiles.append(row)
 
+    def add_lakes(self, number = 3):
+        for l in range(number):
+            cx = random.randint(0, 200)
+            cy = random.randint(0, 200)
+            nt = self.getTile(cx, cy)
+            nt._terrain = water()
+            size = 150
+            for i in range(size):
+                nt = None
+                while not nt:
+                    nx = random.randint(-1, 1)
+                    ny = random.randint(-1, 1)
+                    nt = self.getTile(cx + nx, cy + ny)
+                nt._terrain = water()
+                cx = nt.point.x
+                cy = nt.point.y
+
+
+    def build_batch(self):
+        for r in self.tiles:
+            for t in r:
+                t.add_to_batch(pygsty.models.default_batch)
+
     @property
     def width(self):
         return self._width
@@ -60,7 +83,6 @@ class Tile():
                 self._world_position[1],
                 self._world_position[0] + size,
                 self._world_position[1] + size )
-        self.add_to_batch(pygsty.models.default_batch)
 
     @property
     def point(self):
@@ -89,6 +111,10 @@ class Terrain():
 def grass():
     green = random.randint(165, 175)
     return Terrain(name="GRASS", color=(0, green, 0, 255))
+
+def water():
+    blue = random.randint(130, 155)
+    return Terrain(name="WATER", color=(0,0, blue, 255))
 
 class OutOfBoundsError(Exception):
     pass

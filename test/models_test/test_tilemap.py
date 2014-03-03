@@ -82,3 +82,4 @@ class TestTerrain(unittest.TestCase):
 
     def test_terrains_have_good_names(self):
         self.assertEqual("GRASS", grass().name, 'Grass should call itself grass')
+        self.assertEqual("WATER", water().name, "Water should be named water")
