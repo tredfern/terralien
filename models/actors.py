@@ -30,14 +30,17 @@ class Actor(pygsty.models.VisibleModel):
         return self._goal
 
     def update(self, map=None):
-        if not len(self.path):
+        if not self.goal:
             self._goal = pygsty.euclid.Point2(random.randint(0, 200), random.randint(0, 200) )
+
+        if not len(self.path):
             self.path = ai.pathing.find_path(self.position, self.goal, map)
 
         if len(self.path):
             n = self.path.pop(0)
             self.moveTo(n.point.x, n.point.y)
-
+            if self.position == self._goal:
+                self._goal = None
 
     def _setupGraphics(self):
         r = pygsty.geometry.Rect(1, 1, 3, 3)
