@@ -28,7 +28,27 @@ class TileMap():
         return self._height
 
     def getTile(self, x, y):
+        if x < 0 or x >= self.width or y < 0 or y >= self.height:
+            return None
         return self.tiles[y][x]
+
+    def getNeighbors(self, x, y):
+        self.validateCoordinates(x,y)
+
+        n = []
+        for j in range(-1, 2):
+            for h in range(-1, 2):
+                if (j !=0 or h!=0):
+                    t = self.getTile(x + j, y + h)
+                    if t:
+                        n += [t]
+
+        return n
+
+    def validateCoordinates(self, x,y):
+        if x < 0 or x >= self.width or \
+            y < 0 or y >= self.height:
+            raise OutOfBoundsError("{} are not valid coordinates".format((x,y)))
 
 class Tile():
     def __init__(self, position, terrain, size=TILE_SIZE):
@@ -53,11 +73,17 @@ class Tile():
         p = pygsty.graphics.rect_to_primitive(self.rect, self.terrain.color)
         p.add_to_batch(batch)
 
+    def __repr__(self):
+        return "Tile( {} {} )".format(self._position, self.terrain.name)
+
 class Terrain():
-    pass
+    def __init__(self, name="UNKNOWN", color=(255,0,255,255) ):
+        self.name = name
+        self.color = color
 
 def grass():
-    t = Terrain()
     green = random.randint(165, 175)
-    t.color = (0, green, 0, 255)
-    return t
+    return Terrain(name="GRASS", color=(0, green, 0, 255))
+
+class OutOfBoundsError(Exception):
+    pass

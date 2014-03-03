@@ -17,10 +17,7 @@ class GameController(pygsty.controllers.BaseController):
     def update(self, dt):
         for c in self.characters:
             c.update()
-            x, y = c.position
-            x += random.randint(-1, 1)
-            y += random.randint(-1, 1)
-            c.moveTo(x, y)
+
 
 
     def on_key_press(self, symbol, modifiers):
