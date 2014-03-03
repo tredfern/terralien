@@ -13,4 +13,4 @@ class TestActor(unittest.TestCase):
         a = Actor()
         self.assert_(a.goal == None, 'Should not start with a goal')
         a.update()
-        self.assert_(a.goal != None, 'Should have a goal')
+        self.assert_(a.goal is not None, 'Should have a goal')

@@ -3,15 +3,18 @@ import random
 import pygsty.models
 import pygsty.graphics
 import pygsty.geometry
+import pygsty.euclid
 
 import models.map
 from models.map import TILE_SIZE
+import ai
 
 
 class Actor(pygsty.models.VisibleModel):
     def __init__(self, position=(0, 0)):
         super().__init__(position=position)
         self._goal = None
+        self.path = []
         self._setupGraphics()
 
     @property
@@ -26,14 +29,15 @@ class Actor(pygsty.models.VisibleModel):
     def goal(self):
         return self._goal
 
-    def update(self):
-        if (self.goal == None):
-            self._goal = (random.randint(0, 200), random.randint(0, 200) )
+    def update(self, map=None):
+        if not len(self.path):
+            self._goal = pygsty.euclid.Point2(random.randint(0, 200), random.randint(0, 200) )
+            self.path = ai.pathing.find_path(self.position, self.goal, map)
 
-        x, y = self.position
-        x += random.randint(-1, 1)
-        y += random.randint(-1, 1)
-        self.moveTo(x, y)
+        if len(self.path):
+            n = self.path.pop(0)
+            self.moveTo(n.point.x, n.point.y)
+
 
     def _setupGraphics(self):
         r = pygsty.geometry.Rect(1, 1, 3, 3)

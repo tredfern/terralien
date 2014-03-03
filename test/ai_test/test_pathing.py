@@ -12,6 +12,10 @@ class TestPathNodes(unittest.TestCase):
         self.assertEqual("PathNode( (4, 2) g=1 h=3 f=4)", repr(n), \
             'PathNodes represent some understandable data')
 
+    def test_its_hash_is_a_tuple_of_its_points(self):
+        n = PathNode(point=(3, 3), g=1, h=1)
+        self.assertEqual(hash((3, 3)), hash(n), 'Hash should be the points of the node')
+
 class TestPathBuilding(unittest.TestCase):
     def test_heuristic_score_is_zero_for_the_same_points(self):
         h_score = heuristic_cost_estimate(Point2(0,0), Point2(0,0))

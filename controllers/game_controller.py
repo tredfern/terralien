@@ -8,7 +8,7 @@ class GameController(pygsty.controllers.BaseController):
         self.map = models.map.TileMap()
         self.map.generate(200, 200)
         self.characters = []
-        for i in range(0,400):
+        for i in range(0,10):
             self.characters.append(models.actors.Actor(position=(100, 100) ) )
 
     def draw(self):
@@ -16,7 +16,7 @@ class GameController(pygsty.controllers.BaseController):
 
     def update(self, dt):
         for c in self.characters:
-            c.update()
+            c.update(self.map)
 
 
 

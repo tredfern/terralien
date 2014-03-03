@@ -1,6 +1,7 @@
 import random
 import pygsty.models
 import pygsty.graphics
+import pygsty.euclid
 
 TILE_SIZE = 5
 
@@ -60,6 +61,10 @@ class Tile():
                 self._world_position[0] + size,
                 self._world_position[1] + size )
         self.add_to_batch(pygsty.models.default_batch)
+
+    @property
+    def point(self):
+        return pygsty.euclid.Point2(self._position[0], self._position[1])
 
     @property
     def terrain(self):
