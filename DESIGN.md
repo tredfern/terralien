@@ -39,6 +39,17 @@ want to do. I want to create something my own, so taking more flawed (relatively
 games and focus on what I'd like seems like a good starting point to me.
 
 
+### Rough idea
+
+I'm leaning towards a survival dystopian environment. Like post-nuclear disaster,
+viral epidemic, etc... something where everything is in a tough situation and
+there is some sort of rebuilding work going on. You know, like playing the
+Fallout vaults but not the Fallout universe at all. Also, I'd like to leave
+it to a level of customization that it could incorporate many different kinds of
+disasters. Each style would generate a different atmosphere to the world. My
+focus isn't on these points to start at all. The idea is to let the events unfold
+in a way that allows for many different kinds of events.
+
 ## Dork stuff that interests me
 
 ### Procedural Generation
@@ -48,3 +59,13 @@ life. It interests me more than games in general, so I will definitely be
 focusing on this in stages as the game comes together. I like the idea of slowly
 building on to it though and in a fashion where each step adds a little bit more
 that is interesting.
+
+### Pathfinding
+
+Just an idea kicking around in my head. Can we make the pathfinding yield results?
+So basically it always builds just enough of the path to get going, but it keeps
+it's structure around for later just in case something else comes up and it needs
+to do some rerouting. I don't know, maybe it's a little silly but it might keep
+performance up and still give good path solutions in the end. I do need to look
+at graphing out maps into precalculated routes in the future though. Particularly
+once forts start coming together.

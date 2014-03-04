@@ -31,10 +31,13 @@ class Actor(pygsty.models.VisibleModel):
 
     def update(self, map=None):
         if not self.goal:
-            self._goal = pygsty.euclid.Point2(random.randint(0, 200), random.randint(0, 200) )
+            self._goal = pygsty.euclid.Point2(random.randint(0, 199), random.randint(0, 199) )
+            if not map.getTile(self.goal.x, self.goal.y).terrain.passable:
+                self._goal = None
 
-        if not len(self.path):
-            self.path = ai.pathing.find_path(self.position, self.goal, map)
+        if self.goal:
+            if not len(self.path):
+                self.path = ai.pathing.find_path(self.position, self.goal, map)
 
         if len(self.path):
             n = self.path.pop(0)

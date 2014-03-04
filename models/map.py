@@ -30,10 +30,13 @@ class TileMap():
             for i in range(size):
                 nt = None
                 while not nt:
-                    nx = random.randint(-1, 1)
-                    ny = random.randint(-1, 1)
+                    nx = random.randint(-2, 2)
+                    ny = random.randint(-2, 2)
                     nt = self.getTile(cx + nx, cy + ny)
                 nt._terrain = water()
+                nb = self.getNeighbors(cx, cy)
+                for ne in nb:
+                    ne._terrain = water()
                 cx = nt.point.x
                 cy = nt.point.y
 
@@ -104,9 +107,10 @@ class Tile():
         return "Tile( {} {} )".format(self._position, self.terrain.name)
 
 class Terrain():
-    def __init__(self, name="UNKNOWN", color=(255,0,255,255) ):
+    def __init__(self, name="UNKNOWN", color=(255,0,255,255), passable=True ):
         self.name = name
         self.color = color
+        self.passable = passable
 
 def grass():
     green = random.randint(165, 175)
@@ -114,7 +118,7 @@ def grass():
 
 def water():
     blue = random.randint(130, 155)
-    return Terrain(name="WATER", color=(0,0, blue, 255))
+    return Terrain(name="WATER", color=(0,0, blue, 255), passable=False)
 
 class OutOfBoundsError(Exception):
     pass
