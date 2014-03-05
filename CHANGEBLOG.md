@@ -47,3 +47,20 @@ seems sometimes the actors can get stuck in some circular loops. I'll need to
 spend more time here, but for the time being the main objective is complete.
 
 Looking into adding some different terrain types now.
+
+
+## March 3rd, 2014
+
+Minor update but actors don't move through the water anymore so that's nice. Except
+they get stuck now because I shortened the length of the path search so much.
+Came up with an idea for them to move around it though by having them hold on
+to their old searches to use when they need to search. So there will always be the
+ability to use previous path information. Also read about graphs and waypoints to
+help with the calculation performance and appearance. But that's probably a few
+releases down the line.
+
+### Goal for next update
+
+  * All tests passing
+  * Static elements on the map like some trees and plants
+  * Some information to the screen like the total number of actors in it or something just to get the UI developing

@@ -29,9 +29,9 @@ class Actor(pygsty.models.VisibleModel):
     def goal(self):
         return self._goal
 
-    def update(self, map=None):
+    def update(self, map):
         if not self.goal:
-            self._goal = pygsty.euclid.Point2(random.randint(0, 199), random.randint(0, 199) )
+            self._goal = pygsty.euclid.Point2(random.randint(0, map.width), random.randint(0, map.height) )
             if not map.getTile(self.goal.x, self.goal.y).terrain.passable:
                 self._goal = None
 
