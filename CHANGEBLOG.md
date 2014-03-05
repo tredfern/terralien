@@ -64,3 +64,18 @@ releases down the line.
   * All tests passing
   * Static elements on the map like some trees and plants
   * Some information to the screen like the total number of actors in it or something just to get the UI developing
+
+## March 5th, 2014
+
+Fixed a bad test in actors to run. Models are probably going to end up referencing each other
+extensively. Maybe this isn't a bad thing now that I think about it. Actually, I
+just was sleepy and being down on it. I think we are good. AI might be the weird
+one out at this point since it extends model functionality. But it could be isolated
+in a clean fashion in the long run.
+
+Got some brutal trees on the map. Well, upside down triangles anyway. Fine for a start but
+am starting to see some annoyances with world vs screen/render coordinates coming up
+on a regular basis. I'd like to avoid a matrix for every little blip but maybe that's
+the easiest way for now.
+
+![Terralien Trees](screenshots/terralien20140305-1.png)

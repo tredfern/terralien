@@ -12,6 +12,8 @@ class TestTileMap(unittest.TestCase):
         self.assertIsInstance(map.tiles[0][0], models.map.Tile)
         self.assertEqual(map.width, 10)
         self.assertEqual(map.height, 40)
+        self.assertEqual(map.array_width, 9)
+        self.assertEqual(map.array_height, 39)
 
     def test_it_can_access_tiles_and_tiles_are_for_the_correct_position(self):
         map = TileMap()

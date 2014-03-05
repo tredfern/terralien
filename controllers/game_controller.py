@@ -13,8 +13,16 @@ class GameController(pygsty.controllers.BaseController):
         for i in range(0,100):
             self.characters.append(models.actors.Actor(position=(100, 100) ) )
 
+        self.static_entities = []
+        for i in range(0, 300):
+            self.static_entities.append(
+                models.statics.Tree(self.map.randomTile())
+            )
+
     def draw(self):
         pygsty.models.render_models()
+        models.statics.static_batch.draw()
+
 
     def update(self, dt):
         for c in self.characters:

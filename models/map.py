@@ -54,10 +54,21 @@ class TileMap():
     def height(self):
         return self._height
 
+    @property
+    def array_width(self):
+        return self.width - 1
+
+    @property
+    def array_height(self):
+        return self.height - 1
+
     def getTile(self, x, y):
         if x < 0 or x >= self.width or y < 0 or y >= self.height:
             return None
         return self.tiles[y][x]
+
+    def randomTile(self):
+        return self.getTile(random.randint(0, self.array_width), random.randint(0, self.array_height))
 
     def getNeighbors(self, x, y):
         self.validateCoordinates(x,y)
@@ -80,12 +91,12 @@ class TileMap():
 class Tile():
     def __init__(self, position, terrain, size=TILE_SIZE):
         self._position = position
-        self._world_position = (position[0] * size, position[1] * size)
+        self._worldPosition = (position[0] * size, position[1] * size)
         self._terrain = terrain
-        self._rect = pygsty.geometry.rect_from_coordinates( self._world_position[0],
-                self._world_position[1],
-                self._world_position[0] + size,
-                self._world_position[1] + size )
+        self._rect = pygsty.geometry.rect_from_coordinates( self._worldPosition[0],
+                self._worldPosition[1],
+                self._worldPosition[0] + size,
+                self._worldPosition[1] + size )
 
     @property
     def point(self):
