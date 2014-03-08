@@ -4,11 +4,13 @@ import pygsty.models
 import pygsty.graphics
 import pygsty.geometry
 import pygsty.euclid
+import pyglet
 
 import models.map
 from models.map import TILE_SIZE
 import ai
 import event_log
+import data
 
 
 class Actor(pygsty.models.VisibleModel):
@@ -45,7 +47,8 @@ class Actor(pygsty.models.VisibleModel):
             if self.position == self._goal:
                 self._goal = None
 
+        self._sprite.x = self.screen_x
+        self._sprite.y = self.screen_y
+
     def _setupGraphics(self):
-        r = pygsty.geometry.Rect(1, 1, 3, 3)
-        p = pygsty.graphics.rect_to_primitive(r, (255, 255, 255, 25) )
-        p.add_to_batch(self.batch, self.render_group)
+        self._sprite = pyglet.sprite.Sprite(data._humanoid_grid_1[0], batch = self.batch)

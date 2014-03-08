@@ -4,6 +4,7 @@ from pygsty.camera import Camera
 from pygsty.drawing import *
 
 import controllers
+import data
 
 from event_log import *
 
