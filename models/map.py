@@ -2,6 +2,8 @@ import random
 import pygsty.models
 import pygsty.graphics
 import pygsty.euclid
+import data
+import pyglet
 
 TILE_SIZE = 16
 
@@ -111,25 +113,25 @@ class Tile():
         return self._rect;
 
     def add_to_batch(self, batch):
-        p = pygsty.graphics.rect_to_primitive(self.rect, self.terrain.color)
-        p.add_to_batch(batch)
+        self._sprite = pyglet.sprite.Sprite(self.terrain.image, x=self._worldPosition[0], y=self._worldPosition[1], batch = batch, group = data.ordered_groups[0])
 
     def __repr__(self):
         return "Tile( {} {} )".format(self._position, self.terrain.name)
 
 class Terrain():
-    def __init__(self, name="UNKNOWN", color=(255,0,255,255), passable=True ):
+    def __init__(self, name="UNKNOWN", color=(255,0,255,255), passable=True, image=None ):
         self.name = name
         self.color = color
         self.passable = passable
+        self.image = image
 
 def grass():
     green = random.randint(165, 175)
-    return Terrain(name="GRASS", color=(0, green, 0, 255))
+    return Terrain(name="GRASS", color=(0, green, 0, 255), image=data.get_floor_image(31,8))
 
 def water():
     blue = random.randint(130, 155)
-    return Terrain(name="WATER", color=(0,0, blue, 255), passable=False)
+    return Terrain(name="WATER", color=(0,0, blue, 255), passable=False, image=data.get_floor_image(16, 15))
 
 class OutOfBoundsError(Exception):
     pass

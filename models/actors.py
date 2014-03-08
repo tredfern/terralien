@@ -42,13 +42,25 @@ class Actor(pygsty.models.VisibleModel):
             self.path = ai.pathing.find_path(self.position, self.goal, map)
 
         if len(self.path):
-            n = self.path.pop(0)
-            self.moveTo(n.point.x, n.point.y)
-            if self.position == self._goal:
-                self._goal = None
+            if(random.randint(0, 10) > 7):
+                n = self.path.pop(0)
+                self.moveTo(n.point.x, n.point.y)
+                if self.position == self._goal:
+                    self._goal = None
 
         self._sprite.x = self.screen_x
         self._sprite.y = self.screen_y
 
+        if(random.randint(0, 10) > 7):
+            if self._current == 1:
+                self._sprite.image = self._image_two
+                self._current = 2
+            else:
+                self._sprite.image = self._image_one
+                self._current = 1
+
     def _setupGraphics(self):
-        self._sprite = pyglet.sprite.Sprite(data._humanoid_grid_1[0], batch = self.batch)
+        self._image_one = data._humanoid_grid1[0]
+        self._image_two = data._humanoid_grid2[0]
+        self._current = 1
+        self._sprite = pyglet.sprite.Sprite(self._image_one, batch = self.batch, group = data.ordered_groups[-1])

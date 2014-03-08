@@ -101,3 +101,8 @@ be looking at utilizing this for the various elements instead of the brutal
 color rendering I've currently been doing. This should actually simplify code
 down considerable since I won't need to manage vertex data so much but instead
 should be able to just point to images.
+
+Ok, simple animations (not in very programmatic way) Images for terrain and
+actors now. Pretty cool.
+
+![Terralien Graphics](screenshots/terralien20140308-1.png)
