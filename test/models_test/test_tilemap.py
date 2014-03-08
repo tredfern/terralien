@@ -69,7 +69,7 @@ class TestTile(unittest.TestCase):
 
     def test_it_is_represented_by_a_rectangle_for_its_world_coordinates(self):
         tile = Tile((2, 3), grass())
-        test_rect = pygsty.geometry.rect_from_coordinates(10 , 15, 15, 20)
+        test_rect = pygsty.geometry.rect_from_coordinates(32 , 48, 48, 64)
         self.assertEqual(tile.rect, test_rect)
 
     def test_it_represents_itself_clearly(self):

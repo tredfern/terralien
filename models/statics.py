@@ -21,6 +21,7 @@ class Tree(pygsty.models.BaseModel):
             (self.position[0] +4 , self.position[1] +4)
         i = [0,1,2]
         color = (100, 20, 30, 255)
-        print("adding to batch {}".format(v))
+
+        pygsty.logger.debug("Adding to batch {}".format(v))
         p = pygsty.graphics.IndexedPrimitive(v, i, color, pyglet.gl.GL_TRIANGLES)
         p.add_to_batch(static_batch)

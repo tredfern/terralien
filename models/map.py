@@ -3,7 +3,7 @@ import pygsty.models
 import pygsty.graphics
 import pygsty.euclid
 
-TILE_SIZE = 5
+TILE_SIZE = 16
 
 class TileMap():
     def __init__(self):

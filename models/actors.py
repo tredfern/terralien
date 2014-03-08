@@ -8,6 +8,7 @@ import pygsty.euclid
 import models.map
 from models.map import TILE_SIZE
 import ai
+import event_log
 
 
 class Actor(pygsty.models.VisibleModel):

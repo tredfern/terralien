@@ -79,3 +79,25 @@ on a regular basis. I'd like to avoid a matrix for every little blip but maybe t
 the easiest way for now.
 
 ![Terralien Trees](screenshots/terralien20140305-1.png)
+
+## March 6th, 2014
+
+Added some logging to pygsty to track root events, also sort of have logging working
+out so that game events could be logged out but it didn't quite work. Python
+default logging works a little differently than I expected so once an logger
+has been created, things start mucking together more than I anticipated. At least
+in a weird way. Might just not understand something, but there is definitely
+a mixup going on with multiple loggers in separate modules. Will work through it.
+
+On the cool side, making a new controller is dead simple so being able to construct
+more interesting user interface elements should be a breeze with a bit more thought
+on controls and elements.
+
+## March 8th, 2014
+
+Came across some open tilesets and tried force rendering one and it work out
+really well and rendered in the appropriate location pretty easily. So I'll
+be looking at utilizing this for the various elements instead of the brutal
+color rendering I've currently been doing. This should actually simplify code
+down considerable since I won't need to manage vertex data so much but instead
+should be able to just point to images.

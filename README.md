@@ -27,3 +27,24 @@ I'll probably push that up at some point in separate repo.
 ## Development Status
 
 For a history and overview of what is currently happening check out the [Change Blog](CHANGEBLOG.md)
+
+
+## Thanks and Resources used
+
+Not sure how many of these will be used in the final product (if there even ever is
+a final product) but I found so many great resources while researching this project
+that I'd like to thank those even if they don't get used in the end:
+
+ * Python, particularly everyone that has ported to Python 3. Move Forward!
+ * OpenGL
+ * Pyglet, great library that saved me hours. Hopefully it can continue
+ * DawnLike tileset. Thanks DawnBringer, and DragonDePlatino for creating it
+ * game-icons.net Not sure which ones will be used yet, so thanks to everyone
+     that contributes to that project:
+     - Lorc, http://lorcblog.blogspot.com
+     - Delapouite, http://delapouite.com
+     - John Colburn, http://ninmunanmu.com
+     - Felbrigg, http://blackdogofdoom.blogspot.co.uk
+     - John Redman, http://www.uniquedicetowers.com
+     - Carl Olsen, https://twitter.com/unstoppableCarl
+     - Sbed, http://opengameart.org/content/95-game-icons
