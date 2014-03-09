@@ -10,7 +10,12 @@ class EventLogController(pygsty.controllers.BaseController):
 
     @property
     def last_message(self):
-        return "Configure Event Log"
+        last_event = models.event_log.last_event()
+        if last_event:
+            return last_event.message
+        else:
+            return "Nothing has happened."
+
 
     def draw_hud(self):
         label = pyglet.text.Label(self.last_message,

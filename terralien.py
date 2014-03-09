@@ -6,8 +6,6 @@ from pygsty.drawing import *
 import controllers
 import data
 
-from event_log import *
-
 def main():
     pygsty.start(1024, 768, False)
     pygsty.engine().push_controller(pygsty.controllers.CameraController((100, 100), 100))

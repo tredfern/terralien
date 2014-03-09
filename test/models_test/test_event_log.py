@@ -1,6 +1,13 @@
 import unittest
 import models.event_log
 
+
+class TestEventLog(unittest.TestCase):
+    def test_it_returns_an_empty_entry_if_there_is_no_history(self):
+        models.event_log.history = []
+        e = models.event_log.last_event()
+        self.assertTrue(e is None)
+
 class TestEntry(unittest.TestCase):
     def test_it_has_a_message_of_what_happened(self):
         e = models.event_log.Entry("Brutal fighting event happened!")
@@ -10,6 +17,12 @@ class TestEntry(unittest.TestCase):
         e = models.event_log.Entry("Event")
         self.assertIsInstance(e.created_at, models.event_log.GameDate)
         self.assertTrue(e.created_at.turn > 0)
+
+    def test_it_adds_itself_to_the_event_log_history(self):
+        e = models.event_log.Entry("Event 2")
+        self.assertTrue(e in models.event_log.history, "Should be in the history")
+        last_event = models.event_log.last_event()
+        self.assertEqual(e, last_event)
 
 class TestGameDate(unittest.TestCase):
     def setUp(self):

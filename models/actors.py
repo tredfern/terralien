@@ -46,6 +46,7 @@ class Actor(pygsty.models.VisibleModel):
                 n = self.path.pop(0)
                 self.moveTo(n.point.x, n.point.y)
                 if self.position == self._goal:
+                    models.event_log.Entry(self.name + " has arrived at her destination.")
                     self._goal = None
 
         self._sprite.x = self.screen_x
