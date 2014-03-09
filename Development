@@ -1,5 +1,4 @@
-ipython
 nose
 rednose
 sniffer
-MacFSEvents
+mock
