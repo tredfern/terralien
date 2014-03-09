@@ -24,3 +24,5 @@ spending all my time on graphics instead of working on some game components*
  * Select tile
  * Keyboard controlled cursor
  * Easier control of camera
+ * Investigate pyglet-gui in more detail. Could save a lot of building
+     interface elements that aren't necessary

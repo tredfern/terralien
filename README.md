@@ -1,5 +1,7 @@
 # Terralien
 
+[![Build Status](https://travis-ci.org/tredfern/terralien.png?branch=master)](https://travis-ci.org/tredfern/terralien)
+
 A variety of game ideas are in my head and this is a chance to try some things out.
 For now, it's also a point to build out a framework for me to build some games on.
 
