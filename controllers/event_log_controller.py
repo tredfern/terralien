@@ -12,7 +12,7 @@ class EventLogController(pygsty.controllers.BaseController):
     def last_message(self):
         last_event = models.event_log.last_event()
         if last_event:
-            return last_event.message
+            return last_event.formatted_message()
         else:
             return "Nothing has happened."
 

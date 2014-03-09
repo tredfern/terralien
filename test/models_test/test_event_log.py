@@ -24,6 +24,13 @@ class TestEntry(unittest.TestCase):
         last_event = models.event_log.last_event()
         self.assertEqual(e, last_event)
 
+    def test_it_can_be_associated_with_an_actor_and_makes_a_nice_message(self):
+        a = models.actors.Actor()
+        e = models.event_log.Entry("Event Foo", created_by = a)
+        self.assertEqual(a, e.created_by, 'Should track who created this event')
+        formatted_message = e.formatted_message()
+        self.assertEqual("{} {} on {}".format(a.name, e.message, e.created_at.turn),formatted_message )
+
 class TestGameDate(unittest.TestCase):
     def setUp(self):
         models.event_log.reset_turn_counter()

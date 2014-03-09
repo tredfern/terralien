@@ -19,14 +19,22 @@ def next_turn():
 
 
 class Entry():
-    def __init__(self, message):
+    def __init__(self, message, created_by = None):
         self.message = message
         self.created_at = GameDate()
+        self.created_by = created_by
         if _log_to_logger:
-            pygsty.logger.info(self.message)
+            pygsty.logger.info(self.formatted_message())
         global history
         history.append (self)
+
+    def formatted_message(self):
+        if self.created_by:
+            return "{} {} on {}".format(self.created_by.name, self.message, self.created_at)
 
 class GameDate():
     def __init__(self):
         self.turn = _current_turn
+
+    def __repr__(self):
+        return "{}".format(self.turn)

@@ -27,6 +27,7 @@ class GameController(pygsty.controllers.BaseController):
     def update(self, dt):
         for c in self.characters:
             c.update(self.map)
+        models.event_log.next_turn()
 
 
 
