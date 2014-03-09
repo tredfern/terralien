@@ -1,6 +1,8 @@
 import pyglet
 import pygsty
 import random
+import data.generators
+
 #
 # Load Humanoid images
 #
