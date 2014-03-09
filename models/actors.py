@@ -19,6 +19,7 @@ class Actor(pygsty.models.VisibleModel):
         self._goal = None
         self.path = []
         self._setupGraphics()
+        self.name = data.generators.names.create_name()
 
     @property
     def screen_x(self):

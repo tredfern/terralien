@@ -18,3 +18,7 @@ class TestActor(unittest.TestCase):
 
         a.update(map)
         self.assert_(a.goal is not None, 'Should have a goal')
+
+    def test_it_has_a_name(self):
+        a = Actor()
+        self.assertTrue(len(a.name) > 0, "Should have a name")
