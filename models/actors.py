@@ -63,4 +63,4 @@ class Actor(pygsty.models.VisibleModel):
         self._image_one = data._humanoid_grid1[0]
         self._image_two = data._humanoid_grid2[0]
         self._current = 1
-        self._sprite = pyglet.sprite.Sprite(self._image_one, batch = self.batch, group = data.ordered_groups[-1])
+        self._sprite = pyglet.sprite.Sprite(self._image_one, batch = self.batch, group = pygsty.graphics.foreground_group)

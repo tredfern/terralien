@@ -2,10 +2,11 @@ import pygsty.models
 import pygsty.graphics
 import random
 import pyglet
+import data
 
 static_batch = pygsty.graphics.batches.create_batch()
 
-class Tree(pygsty.models.BaseModel):
+class Tree(pygsty.models.VisibleModel):
     def __init__(self, location=None):
         self.location = location
         if location:
@@ -16,12 +17,8 @@ class Tree(pygsty.models.BaseModel):
 
 
     def add_to_batch(self):
-        v = (self.position[0] + 2, self.position[1] +2), \
-            (self.position[0], self.position[1] +4), \
-            (self.position[0] +4 , self.position[1] +4)
-        i = [0,1,2]
-        color = (100, 20, 30, 255)
-
-        pygsty.logger.debug("Adding to batch {}".format(v))
-        p = pygsty.graphics.IndexedPrimitive(v, i, color, pyglet.gl.GL_TRIANGLES)
-        p.add_to_batch(static_batch)
+        self._sprite = pyglet.sprite.Sprite(data.get_tree_image(26, 3),
+        x = self.x,
+        y = self.y,
+        batch=self.batch,
+        group=pygsty.graphics.middleground_group)

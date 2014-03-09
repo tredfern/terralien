@@ -113,7 +113,7 @@ class Tile():
         return self._rect;
 
     def add_to_batch(self, batch):
-        self._sprite = pyglet.sprite.Sprite(self.terrain.image, x=self._worldPosition[0], y=self._worldPosition[1], batch = batch, group = data.ordered_groups[0])
+        self._sprite = pyglet.sprite.Sprite(self.terrain.image, x=self._worldPosition[0], y=self._worldPosition[1], batch = batch, group = pygsty.graphics.background_group)
 
     def __repr__(self):
         return "Tile( {} {} )".format(self._position, self.terrain.name)
