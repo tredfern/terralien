@@ -14,7 +14,7 @@ class GameController(pygsty.controllers.BaseController):
             self.characters.append(models.actors.Actor(position=(100, 100) ) )
 
         self.static_entities = []
-        for i in range(0, 300):
+        for i in range(0, 3000):
             self.static_entities.append(
                 models.statics.Tree(self.map.randomTile())
             )

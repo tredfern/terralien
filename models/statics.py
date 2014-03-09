@@ -6,18 +6,20 @@ import data
 
 static_batch = pygsty.graphics.batches.create_batch()
 
+tree_types = ["leaf", "dark_leaf", "conifer", "dark_conifer"]
 class Tree(pygsty.models.VisibleModel):
     def __init__(self, location=None):
         self.location = location
+        self.tree_type = random.choice(tree_types)
+
         if location:
             super().__init__(position=location._worldPosition)
             self.add_to_batch()
-
         self.wood = random.randint(1, 50)
 
 
     def add_to_batch(self):
-        self._sprite = pyglet.sprite.Sprite(data.get_tree_image(26, 3),
+        self._sprite = pyglet.sprite.Sprite(data.trees[self.tree_type],
         x = self.x,
         y = self.y,
         batch=self.batch,
