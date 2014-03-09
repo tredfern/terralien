@@ -9,7 +9,6 @@ import pyglet
 import models.map
 from models.map import TILE_SIZE
 import ai
-import event_log
 import data
 
 

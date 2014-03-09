@@ -1,6 +1,6 @@
 import pygsty.controllers
 import logging
-import event_log
+import models
 
 import pyglet
 
