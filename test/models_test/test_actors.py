@@ -13,9 +13,8 @@ class TestActor(unittest.TestCase):
         a = Actor()
         self.assert_(a.goal == None, 'Should not start with a goal')
 
-        map = models.map.TileMap()
-        map.generate(10, 10)
-
+        map = models.map.TileMap(10, 10)
+        
         a.update(map)
         self.assert_(a.goal is not None, 'Should have a goal')
 

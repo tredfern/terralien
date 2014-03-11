@@ -7,41 +7,19 @@ import pyglet
 
 TILE_SIZE = 16
 
+
+
 class TileMap():
-    def __init__(self):
-        super().__init__()
+    def __init__(self, width=0, height=0):
         self.tiles = []
-
-    def generate(self, w, h):
-        self._width = w
-        self._height = h
-        for y in range(h):
+        self._width = width
+        self._height = height
+        for y in range(height):
             row = []
-            for x in range(w):
-                t = Tile((x, y), grass())
+            for x in range(width):
+                t = Tile((x, y), terrains["unknown"])
                 row.append(t)
-            self.tiles.append(row)
-
-    def add_lakes(self, number = 3):
-        for l in range(number):
-            cx = random.randint(0, 200)
-            cy = random.randint(0, 200)
-            nt = self.getTile(cx, cy)
-            nt._terrain = water()
-            size = 150
-            for i in range(size):
-                nt = None
-                while not nt:
-                    nx = random.randint(-2, 2)
-                    ny = random.randint(-2, 2)
-                    nt = self.getTile(cx + nx, cy + ny)
-                nt._terrain = water()
-                nb = self.getNeighbors(cx, cy)
-                for ne in nb:
-                    ne._terrain = water()
-                cx = nt.point.x
-                cy = nt.point.y
-
+            self.tiles.append(row)    
 
     def build_batch(self):
         for r in self.tiles:
@@ -91,7 +69,7 @@ class TileMap():
             raise OutOfBoundsError("{} are not valid coordinates".format((x,y)))
 
 class Tile():
-    def __init__(self, position, terrain, size=TILE_SIZE):
+    def __init__(self, position, terrain = None, size=TILE_SIZE):
         self._position = position
         self._worldPosition = (position[0] * size, position[1] * size)
         self._terrain = terrain
@@ -118,20 +96,20 @@ class Tile():
     def __repr__(self):
         return "Tile( {} {} )".format(self._position, self.terrain.name)
 
+    def change_terrain(self, terrain):
+        self._terrain = terrain
+
 class Terrain():
-    def __init__(self, name="UNKNOWN", color=(255,0,255,255), passable=True, image=None ):
+    def __init__(self, name="UNKNOWN", passable=True, image=None ):
         self.name = name
-        self.color = color
         self.passable = passable
         self.image = image
 
-def grass():
-    green = random.randint(165, 175)
-    return Terrain(name="GRASS", color=(0, green, 0, 255), image=data.get_floor_image(31,8))
-
-def water():
-    blue = random.randint(130, 155)
-    return Terrain(name="WATER", color=(0,0, blue, 255), passable=False, image=data.get_floor_image(16, 15))
+terrains = {
+    "unknown" : Terrain(),
+    "grass" : Terrain(name="GRASS", image=data.get_floor_image(31,8)),
+    "water" : Terrain(name="WATER",  passable=False, image=data.get_floor_image(16, 15)),
+}
 
 class OutOfBoundsError(Exception):
     pass

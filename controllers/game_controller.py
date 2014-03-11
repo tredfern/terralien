@@ -2,12 +2,11 @@ import pygsty
 from pyglet.window import key
 import models
 import random
+import data
 
 class GameController(pygsty.controllers.BaseController):
     def __init__(self):
-        self.map = models.map.TileMap()
-        self.map.generate(200, 200)
-        self.map.add_lakes()
+        self.map = data.generators.map.make_map(200, 200)
         self.map.build_batch()
         self.characters = []
         for i in range(0,100):

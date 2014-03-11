@@ -19,10 +19,10 @@ spending all my time on graphics instead of working on some game components*
  * Different character images
 
 ## User Interface
- * Event Log Message Area
  * Select character
  * Select tile
  * Keyboard controlled cursor
  * Easier control of camera
  * Investigate pyglet-gui in more detail. Could save a lot of building
      interface elements that aren't necessary
+ * Some sort of layout for the screen - areas for controls

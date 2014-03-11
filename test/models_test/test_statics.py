@@ -3,7 +3,7 @@ import models.statics
 
 class TestTree(unittest.TestCase):
     def test_it_can_be_plopped_on_the_map_somewhere(self):
-        tile = models.map.Tile(position=(3,3), terrain=models.map.grass())
+        tile = models.map.Tile(position=(3,3))
         tree = models.statics.Tree(location=tile)
         self.assertEqual(tree.location, tile)
         self.assertEqual(tree.position, tile._worldPosition)
