@@ -6,6 +6,14 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## March 10th
+
+It's still a pretty brutal map generator, but I made it a bit more configurable
+and moved some of the code out into the generators area. Forests are more consistent
+and the lakes are larger. Of course, this breaks the dummy path finding game
+going on right now a bit more but it's starting to look a little more interesting.
+
+![Terralien Graphics](screenshots/terralien20140310.png)
 
 ## March 9th
 

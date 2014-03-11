@@ -8,10 +8,12 @@ static_batch = pygsty.graphics.batches.create_batch()
 
 tree_types = ["leaf", "dark_leaf", "conifer", "dark_conifer"]
 class Tree(pygsty.models.VisibleModel):
-    def __init__(self, location=None):
+    def __init__(self, location=None, tree_type = None):
         self.location = location
-        self.tree_type = random.choice(tree_types)
-
+        if tree_type == None:
+            tree_type = random.choice(tree_types)
+        self.tree_type = tree_type
+        
         if location:
             super().__init__(position=location._worldPosition)
             self.add_to_batch()

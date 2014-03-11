@@ -1,14 +1,20 @@
 import models
 import models.map
 import random
+import pygsty
 
 LAKES = 3
-LAKE_SIZE = 0.1
+LAKE_SIZE = 0.05
+FORESTS = 15
+FOREST_SIZE = 0.05
+
+trees = []
 
 def make_map(width, height):
     map = models.map.TileMap(width, height)
     fill_map(map, models.map.terrains["grass"])
     create_lakes(map, LAKES, int(width * height * LAKE_SIZE))
+    create_forest(map, FORESTS, int(width * height * FOREST_SIZE))
     return map
 
 def fill_map(map, terrain):
@@ -22,7 +28,6 @@ def create_lakes(map, lake_count, size):
         cy = random.randint(0, map.array_height)
         nt = map.getTile(cx, cy)
         nt._terrain = models.map.terrains["water"]
-        size = 150
         for i in range(size):
             nt = None
             while not nt:
@@ -36,3 +41,17 @@ def create_lakes(map, lake_count, size):
                 ne._terrain = models.map.terrains["water"]
             cx = nt.point.x
             cy = nt.point.y
+
+def create_forest(map, forest_count, size):
+    for l in range(forest_count):
+        forest_type = random.choice(models.statics.tree_types)
+        current = map.randomTile()
+        while not current.terrain.passable:
+            current = map.randomTile()
+
+        for i in range(size):
+            if current.terrain.passable:
+                pygsty.logger.info("Adding tree to {}".format(current))
+                trees.append(models.statics.Tree(current, forest_type))
+            neighbors = map.getNeighbors(current.point.x, current.point.y)
+            current = random.choice(neighbors)
