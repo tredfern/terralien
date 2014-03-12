@@ -52,6 +52,6 @@ def create_forest(map, forest_count, size):
         for i in range(size):
             if current.terrain.passable:
                 pygsty.logger.info("Adding tree to {}".format(current))
-                trees.append(models.statics.Tree(current, forest_type))
+                models.statics.Tree(current, forest_type)
             neighbors = map.getNeighbors(current.point.x, current.point.y)
             current = random.choice(neighbors)

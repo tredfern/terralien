@@ -12,7 +12,7 @@ import ai
 import data
 
 
-class Actor(pygsty.models.VisibleModel):
+class Actor(pygsty.models.BaseModel):
     def __init__(self, position=(0, 0)):
         super().__init__(position=position)
         self._goal = None

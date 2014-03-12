@@ -19,12 +19,12 @@ class TileMap():
             for x in range(width):
                 t = Tile((x, y), terrains["unknown"])
                 row.append(t)
-            self.tiles.append(row)    
+            self.tiles.append(row)
 
     def build_batch(self):
         for r in self.tiles:
             for t in r:
-                t.add_to_batch(pygsty.models.default_batch)
+                t.add_to_batch(pygsty.models.model_batch)
 
     @property
     def width(self):
