@@ -6,6 +6,16 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## March 14th
+
+Outlining some goals for the weekend:
+
+ # Limit number of trees on a tile to one
+ # Create some simple supply chain mechanics. Like chopping down a tree and taking
+     it to a stockpile. Then have something like a sawmill turn it into lumber
+     and put it back in the stockpile. Not sure what will happen then, but it
+     is showing the main complex elements for a supply line game.
+
 ## March 10th
 
 It's still a pretty brutal map generator, but I made it a bit more configurable

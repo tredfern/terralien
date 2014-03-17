@@ -9,10 +9,14 @@ class GameController(pygsty.controllers.BaseController):
         self.map = data.generators.map.make_map(200, 200)
         self.map.build_batch()
         self.characters = []
-        for i in range(0,100):
-            self.characters.append(models.actors.Actor(position=(100, 100) ) )
 
-        
+        start = self.map.randomTile()
+        while start.terrain == models.map.terrains["water"]:
+            start = self.map.randomTile()
+
+        self.characters.append(models.actors.Actor(start._position) )
+
+
 
     def draw(self):
         pygsty.models.render_models()

@@ -53,7 +53,7 @@ def find_path(start, end, map, max_length = 10):
         best_node.open = False
 
         #At the end
-        if best_node.point == end or best_node.g > max_length:
+        if best_node.point == end: # or best_node.g > max_length:
             return construct_path(best_node)
 
         test_tiles = map.getNeighbors(best_node.point.x, best_node.point.y)
