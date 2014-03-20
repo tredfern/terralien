@@ -4,7 +4,6 @@ import random
 import pyglet
 import data
 
-static_batch = pygsty.graphics.batches.create_batch()
 
 tree_types = ["leaf", "dark_leaf", "conifer", "dark_conifer"]
 class Tree(pygsty.models.BaseModel):

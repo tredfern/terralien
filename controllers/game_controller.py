@@ -20,7 +20,6 @@ class GameController(pygsty.controllers.BaseController):
 
     def draw(self):
         pygsty.models.render_models()
-        models.statics.static_batch.draw()
 
 
     def update(self, dt):
