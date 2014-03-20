@@ -30,8 +30,6 @@ spending all my time on graphics instead of working on some game components*
 
 ## Pygsty
 
- * Update models to hold on to instances. Seems to be trouble in pyglet land when
-     things are not held on to references for the vertices or something. Or it
-     is just the way it is being managed. This makes a lot of sense in the long
-     run anyway to provide a mechanism for tracking created objects in the engine.
-     Actually maybe I'll allow you to tag objects for better searching... hmm..
+ * Models are stored in the ModelRepository. Provide mechanisms for searching
+ the repository and pulling out relevant information. For example, where are
+ bad guys? where is my bed?

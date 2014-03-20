@@ -6,6 +6,17 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## March 19th
+
+In pygsty I created a ModelRepository to handle the dealing with models and
+interactions. I'm thinking this is where queries would be run for things like:
+
+ * Did I collide with something?
+ * Where is the closest enemy?
+ * Where can I find food?
+
+
+
 ## March 14th
 
 Outlining some goals for the weekend:
