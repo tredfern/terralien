@@ -15,7 +15,17 @@ interactions. I'm thinking this is where queries would be run for things like:
  * Where is the closest enemy?
  * Where can I find food?
 
+This also allows for the possibility of adding hooks or a publisher/subscribe
+type system from the repository when models are added/removed or if major events
+happen. Right now, it's just wrapping a set which keeps the instance around and
+makes it possible to track the item is there, but I will begin adding a tree
+to make it easier to find models by position.
 
+Also, looking into some object store databases. Might be overkill and really not
+necessary at this point. It was kind of a side track while I poke around at what
+opportunities are out there for handling that kind of work. Saving might be an
+interesting thing to integrate sooner than later though because it is such a
+pain. 
 
 ## March 14th
 

@@ -19,15 +19,8 @@ class Actor(pygsty.models.BaseModel):
         self.path = []
         self._setupGraphics()
         self.name = data.generators.names.create_name()
-        
-
-    @property
-    def screen_x(self):
-        return self.x * TILE_SIZE
-
-    @property
-    def screen_y(self):
-        return self.y * TILE_SIZE
+        self.screen_offset_x = TILE_SIZE
+        self.screen_offset_y = TILE_SIZE
 
     @property
     def goal(self):
@@ -49,9 +42,6 @@ class Actor(pygsty.models.BaseModel):
                 if self.position == self._goal:
                     models.event_log.Entry("arrived at her destination", created_by = self)
                     self._goal = None
-
-        self._sprite.x = self.screen_x
-        self._sprite.y = self.screen_y
 
         if(random.randint(0, 10) > 7):
             if self._current == 1:

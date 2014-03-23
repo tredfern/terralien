@@ -7,11 +7,10 @@ import pyglet
 
 TILE_SIZE = 16
 
-
-
 class TileMap():
     def __init__(self, width=0, height=0):
         self.tiles = []
+        pygsty.models.set_repository_size(width, height)
         self._width = width
         self._height = height
         for y in range(height):
@@ -77,6 +76,14 @@ class Tile():
                 self._worldPosition[1],
                 self._worldPosition[0] + size,
                 self._worldPosition[1] + size )
+
+    @property
+    def x(self):
+        return self._position[0]
+
+    @property
+    def y(self):
+        return self._position[1]
 
     @property
     def point(self):

@@ -2,6 +2,8 @@ import unittest
 import data.generators.map
 import models.map
 
+import pygsty.models
+pygsty.models.set_repository_size(250, 250)
 
 class TestMapGenerator(unittest.TestCase):
     def test_it_constructs_a_map_to_our_specified_size(self):
