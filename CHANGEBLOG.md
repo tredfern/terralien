@@ -6,6 +6,33 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## March 23rd
+
+So in trying to implement more interesting AI ran into troubles of figuring out
+where other objects are and what are they. I have implemented a pretty brutal
+but effective for this stage repository that deals with entities in the world.
+While it does not track motion of them (only really works with static objects)
+it does allow for some pretty flexible searching through the ability to pass
+custom filters.
+
+Also, I've begun to break out the AI logic code. Actors will
+behave with two basic levels of behavior.
+ * First off they will have a task they are trying to complete. This will be
+     handled by the AI component. It makes decisions about what the actor should
+     be doing in order to fulfill the task, but doesn't control the rules of
+     accomplishing the task
+ * Orders will be created that will determine what the character is actually doing
+     For example, if a task requires the character to move somewhere, it will
+     give that order to the actor. The order knows how to fulfill the actual
+     mechanism of moving or whatever the other task might be. When an order is
+     completed the next step for a task will be called. Once all orders have
+     been completed the task will be completed and the actor will find a different
+     task to do.
+
+There will probably need to be some global behaviors characters work off of in
+order to give them more rounded characteristics, but this will cover the core
+mechanisms for simulating the world.
+
 ## March 19th
 
 In pygsty I created a ModelRepository to handle the dealing with models and
@@ -25,7 +52,7 @@ Also, looking into some object store databases. Might be overkill and really not
 necessary at this point. It was kind of a side track while I poke around at what
 opportunities are out there for handling that kind of work. Saving might be an
 interesting thing to integrate sooner than later though because it is such a
-pain. 
+pain.
 
 ## March 14th
 
