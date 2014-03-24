@@ -8,11 +8,10 @@ from models.map import TILE_SIZE
 
 tree_types = ["leaf", "dark_leaf", "conifer", "dark_conifer"]
 class Tree(pygsty.models.BaseModel):
-    def __init__(self, location=(0,0), tree_type = None):
-        super().__init__(position=location)
+    def __init__(self, position=(0,0), tree_type = None):
+        super().__init__(position=position)
         self.screen_offset_x = TILE_SIZE
         self.screen_offset_y = TILE_SIZE
-        self.location = location
         if tree_type == None:
             tree_type = random.choice(tree_types)
         self.tree_type = tree_type

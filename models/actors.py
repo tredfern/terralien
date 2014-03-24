@@ -15,33 +15,24 @@ import data
 class Actor(pygsty.models.BaseModel):
     def __init__(self, position=(0, 0)):
         super().__init__(position=position)
-        self._goal = None
         self.path = []
         self._setupGraphics()
         self.name = data.generators.names.create_name()
         self.screen_offset_x = TILE_SIZE
         self.screen_offset_y = TILE_SIZE
-
-    @property
-    def goal(self):
-        return self._goal
+        self.current_task = None
 
     def update(self, map):
-        while not self.goal:
-            self._goal = pygsty.euclid.Point2(random.randint(0, map.array_width), random.randint(0, map.array_height) )
-            if not map.getTile(self.goal.x, self.goal.y).terrain.passable:
-                self._goal = None
+        if not self.current_task:
+            self.current_task = ai.tasks.MoveToRandomLocation(self, map)
 
-        if not len(self.path):
-            self.path = ai.pathing.find_path(self.position, self.goal, map)
-
-        if len(self.path):
-            if(random.randint(0, 10) > 7):
-                n = self.path.pop(0)
-                self.moveTo(n.point.x, n.point.y)
-                if self.position == self._goal:
-                    models.event_log.Entry("arrived at her destination", created_by = self)
-                    self._goal = None
+        self.current_task.next_step()
+        if self.current_task.completed():
+            models.event_log.Entry("arrived at her destination", created_by = self)
+            self.current_task = None
+        elif self.current_task.cannot_complete():
+            models.event_log.Entry("canceled her task (unreachable)", created_by = self)
+            self.current_task = None
 
         if(random.randint(0, 10) > 7):
             if self._current == 1:
