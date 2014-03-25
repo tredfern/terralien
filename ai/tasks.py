@@ -2,6 +2,7 @@ import random
 import ai
 from pygsty.euclid import *
 import models
+import orders
 
 class ChopTrees():
     def __init__(self, actor):
@@ -23,9 +24,6 @@ class ChopTrees():
             is_tree)
 
 
-
-
-
 class MoveToRandomLocation():
     def __init__(self, actor, map):
         self._actor = actor
@@ -36,12 +34,12 @@ class MoveToRandomLocation():
             if not map.getTile(self._goal[0], self._goal[1]).terrain.passable:
                 self._goal = None
         self.path = ai.pathing.find_path(actor.position, self._goal, map)
+        self.order = orders.moving.Walk(self._actor, self.path)
 
     def next_step(self):
         if len(self.path):
             if(random.randint(0, 10) > 7):
-                n = self.path.pop(0)
-                self._actor.moveTo(n.point.x, n.point.y)
+                self.order.perform_action()
 
     def completed(self):
         return self._actor.position == self._goal
