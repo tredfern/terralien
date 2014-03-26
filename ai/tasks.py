@@ -9,6 +9,7 @@ class ChopTrees():
         self._actor = actor
         actor.current_task = self
         self.search_radius = 20
+        self._target = self.find_target()
 
     @property
     def actor(self):
