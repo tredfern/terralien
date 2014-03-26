@@ -34,12 +34,11 @@ class MoveToRandomLocation():
             if not map.getTile(self._goal[0], self._goal[1]).terrain.passable:
                 self._goal = None
         self.path = ai.pathing.find_path(actor.position, self._goal, map)
-        self.order = actions.moving.Walk(self._actor, self.path)
 
     def next_step(self):
         if len(self.path):
-            if(random.randint(0, 10) > 7):
-                self.order.perform_action()
+            next = self.path.pop(0)
+            actions.moving.walk(self._actor, next.point)
 
     def completed(self):
         return self._actor.position == self._goal
