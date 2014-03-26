@@ -2,7 +2,7 @@ import random
 import ai
 from pygsty.euclid import *
 import models
-import orders
+import actions
 
 class ChopTrees():
     def __init__(self, actor):
@@ -34,7 +34,7 @@ class MoveToRandomLocation():
             if not map.getTile(self._goal[0], self._goal[1]).terrain.passable:
                 self._goal = None
         self.path = ai.pathing.find_path(actor.position, self._goal, map)
-        self.order = orders.moving.Walk(self._actor, self.path)
+        self.order = actions.moving.Walk(self._actor, self.path)
 
     def next_step(self):
         if len(self.path):
