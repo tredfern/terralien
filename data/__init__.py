@@ -14,6 +14,7 @@ _floor = pyglet.image.load("data/images/Map/Floor.png")
 _trees = pyglet.image.load("data/images/Map/Tree0.png")
 _trees2 = pyglet.image.load("data/images/Map/Tree1.png")
 _tiles = pyglet.image.load("data/images/Map/Tile.png")
+_cursors = pyglet.image.load("data/images/gui/cursors.png")
 
 _h_rows = int(_humanoid.height / 16)
 _h_cols = int(_humanoid.width / 16)
@@ -33,6 +34,7 @@ _tree_grid = pyglet.image.ImageGrid(_trees, _t_rows, _t_cols)
 _tree_grid2 = pyglet.image.ImageGrid(_trees2, _t_rows, _t_cols)
 _tile_grid = pyglet.image.ImageGrid(_tiles, _tile_rows, _tile_cols)
 
+
 def get_floor_image(row, col):
     index = row * _f_cols + col
     return _floor_grid[index]
@@ -44,6 +46,10 @@ def get_tree_image(row, col):
 def get_tiles_image(row, col):
     index = row * _tile_cols + col
     return _tile_grid[index]
+
+cursors = {
+    "default": _cursors
+}
 
 tiles = {
     "stockpile": get_tiles_image(3,0)

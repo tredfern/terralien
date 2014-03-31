@@ -6,6 +6,18 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## March 31st
+
+A simple cursor is now controllable that moves around the screen. Currently it
+doesn't provide any information or ability to input anything interesting but
+it is a sprite on the map that is user controlled and should allow some manipulation
+of the world at this point. I'm avoiding mouse for a little bit since I think
+keyboard is the long term goal for this project. But some mouse manipulate will
+be available at some point.
+
+Next I'd like to start drawing more user interface elements onto the screen.
+
+
 ## March 23rd
 
 So in trying to implement more interesting AI ran into troubles of figuring out
