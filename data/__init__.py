@@ -1,7 +1,11 @@
+import config
 import pyglet
 import pygsty
 import random
 import data.generators
+
+from pyglet_gui.theme import Theme
+
 
 #
 # Load Humanoid images
@@ -81,3 +85,28 @@ trees = {
     "cactus": get_tree_image(2, 3),
     "palm": get_tree_image(5,3)
 }
+
+
+ui_theme = Theme({"font": "Lucida Grande",
+               "font_size": 12,
+               "text_color": [255, 255, 255, 255],
+               "gui_color": [64, 64, 64, 255],
+               "vscrollbar": {
+                   "knob": {
+                       "image": {
+                           "source": "vscrollbar.png",
+                           "region": [0, 16, 16, 16],
+                           "frame": [0, 6, 16, 4],
+                           "padding": [0, 0, 0, 0]
+                       },
+                       "offset": [0, 0]
+                   },
+                   "bar": {
+                       "image": {
+                           "source": "vscrollbar.png",
+                           "region": [0, 64, 16, 16]
+                       },
+                       "padding": [0, 0, 0, 0]
+                   }
+               }
+              }, resources_path=config.get_ui_resource_path())

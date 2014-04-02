@@ -1,1 +1,2 @@
 hg+https://pyglet.googlecode.com/hg/@2813:0aa8bfe3313a#egg=pyglet
+git+https://github.com/tredfern/pyglet-gui.git

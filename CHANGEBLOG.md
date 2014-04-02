@@ -6,6 +6,12 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## April 1st
+
+Plugged in pyglet-gui and have a basic document element rendering. Next step
+will be to tie it to the event log and let the log fill up with events and just
+append them in a scrollable log. That'll be kind of cool.
+
 ## March 31st
 
 A simple cursor is now controllable that moves around the screen. Currently it

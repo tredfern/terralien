@@ -4,6 +4,7 @@ import pygsty.graphics
 
 from models.map import *
 
+
 class TestTileMap(unittest.TestCase):
     def test_it_generates_a_set_of_tiles_to_set_dimensions(self):
         map = TileMap(10, 40)

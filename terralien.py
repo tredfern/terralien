@@ -1,3 +1,4 @@
+import config
 
 import pygsty
 from pygsty.camera import Camera
@@ -12,6 +13,7 @@ def main():
     pygsty.engine().push_controller(pygsty.controllers.PerformanceController())
     pygsty.engine().push_controller(controllers.GameController())
     pygsty.engine().push_controller(controllers.EventLogController())
+    pygsty.engine().push_controller(controllers.TestDocumentController())
 
     pygsty.logger.info("Game Initialized")
     pygsty.run()
