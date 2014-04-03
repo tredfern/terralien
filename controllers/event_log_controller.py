@@ -14,7 +14,8 @@ class EventLogController(pygsty.controllers.BaseController):
         super().__init__()
         self.hud_batch = pyglet.graphics.Batch()
         self.doc = Document(self.last_message, width=600, height=50)
-        self.manager = Manager(Frame(self.doc),
+        self.frame = Frame(self.doc)
+        self.manager = Manager(self.frame,
         window=pygsty.engine(), batch=self.hud_batch,
         theme=config.ui_theme)
         self.manager.set_position(10, 50)
