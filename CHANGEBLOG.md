@@ -6,6 +6,18 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## April 2nd
+
+It's a small improvement but a good one. I've lightly integrated the pyglet-gui
+project so that I can start building an actual user interface around the project.
+The implementation is difficult to manage at this point for what I need to do but
+I did integrate the event log into this pyglet gui and have it update the document.
+I'd like it to just append the text or show the last ten events or something, but
+whatever. This is good enough for now.
+
+![Terralien Graphics](screenshots/terralien20140402.png)
+
+
 ## April 1st
 
 Plugged in pyglet-gui and have a basic document element rendering. Next step
@@ -76,8 +88,8 @@ pain.
 
 Outlining some goals for the weekend:
 
- # Limit number of trees on a tile to one
- # Create some simple supply chain mechanics. Like chopping down a tree and taking
+ * Limit number of trees on a tile to one
+ * Create some simple supply chain mechanics. Like chopping down a tree and taking
      it to a stockpile. Then have something like a sawmill turn it into lumber
      and put it back in the stockpile. Not sure what will happen then, but it
      is showing the main complex elements for a supply line game.
