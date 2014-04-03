@@ -29,7 +29,7 @@ class TestEntry(unittest.TestCase):
         e = models.event_log.Entry("Event Foo", created_by = a)
         self.assertEqual(a, e.created_by, 'Should track who created this event')
         formatted_message = e.formatted_message()
-        self.assertEqual("{} {} on {}".format(a.name, e.message, e.created_at.turn),formatted_message )
+        self.assertEqual("({}) {} : {}\n".format(e.created_at.turn, a.name, e.message),formatted_message )
 
 class TestGameDate(unittest.TestCase):
     def setUp(self):

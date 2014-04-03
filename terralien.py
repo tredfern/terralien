@@ -12,6 +12,7 @@ def main():
     pygsty.engine().push_controller(pygsty.controllers.CameraController((100, 100), 100))
     pygsty.engine().push_controller(pygsty.controllers.PerformanceController())
     pygsty.engine().push_controller(controllers.GameController())
+    pygsty.engine().push_controller(controllers.SideMenuController())
     pygsty.engine().push_controller(controllers.EventLogController())
 
     pygsty.logger.info("Game Initialized")

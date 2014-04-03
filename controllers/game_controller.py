@@ -4,6 +4,11 @@ import models
 import random
 import data
 
+
+from pyglet.gl import (
+    glViewport
+)
+
 class GameController(pygsty.controllers.BaseController):
     def __init__(self):
         self.map = data.generators.map.make_map(200, 200)
@@ -20,7 +25,11 @@ class GameController(pygsty.controllers.BaseController):
         self.assign_keys()
 
     def draw(self):
+        glViewport(0, 120, 800, 650)
         pygsty.models.render_models()
+
+    def draw_hud(self):
+        glViewport(0, 0, 1024, 768)
 
 
     def update(self, dt):

@@ -30,7 +30,7 @@ class Entry():
 
     def formatted_message(self):
         if self.created_by:
-            return "{} {} on {}".format(self.created_by.name, self.message, self.created_at)
+            return "({}) {} : {}\n".format(self.created_at, self.created_by.name, self.message)
 
 class GameDate():
     def __init__(self):
