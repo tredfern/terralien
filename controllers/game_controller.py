@@ -4,11 +4,6 @@ import models
 import random
 import data
 
-
-from pyglet.gl import (
-    glViewport
-)
-
 class GameController(pygsty.controllers.BaseController):
     def __init__(self):
         self.map = data.generators.map.make_map(200, 200)
@@ -25,12 +20,7 @@ class GameController(pygsty.controllers.BaseController):
         self.assign_keys()
 
     def draw(self):
-        glViewport(0, 120, 800, 650)
         pygsty.models.render_models()
-
-    def draw_hud(self):
-        glViewport(0, 0, 1024, 768)
-
 
     def update(self, dt):
         self.cursor.update()
@@ -58,5 +48,9 @@ class GameController(pygsty.controllers.BaseController):
             key.A: self.cursor.move_left,
             key.W: self.cursor.move_up,
             key.S: self.cursor.move_down,
-            key.D: self.cursor.move_right
+            key.D: self.cursor.move_right,
+            key.B: self.build_stockpile
         }
+
+    def build_stockpile(self):
+        self.buildings.append(models.stockpiles.Stockpile(self.cursor.x, self.cursor.y, 3, 3))

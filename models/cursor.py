@@ -1,7 +1,10 @@
 import pygsty.models
 import data
 from models.map import TILE_SIZE
+_cursor = None
 
+def get_cursor():
+    return _cursor
 
 class Cursor(pygsty.models.BaseModel):
     def __init__(self, position):
@@ -11,6 +14,8 @@ class Cursor(pygsty.models.BaseModel):
         self.initSprite(data.cursors["default"], pygsty.graphics.hud_group)
         self.move_x = 0
         self.move_y = 0
+        global _cursor
+        _cursor = self
 
     def update(self):
         self.moveTo(self.x + self.move_x, self.y + self.move_y)
@@ -32,4 +37,3 @@ class Cursor(pygsty.models.BaseModel):
 
     def stop_move_vert(self):
         self.move_y = 0
-        
