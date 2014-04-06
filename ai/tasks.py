@@ -24,6 +24,23 @@ class ChopTrees():
             self.search_radius,
             is_tree)
 
+class MoveTo():
+    def __init__(self, actor, target):
+        self._actor = actor
+        actor.current_task = self
+        self._goal = target
+        self.path = ai.pathing.find_path(actor.position, self._goal, models.get_map())
+
+    def next_step(self):
+        if len(self.path):
+            next = self.path.pop(0)
+            actions.moving.walk(self._actor, next.point)
+
+    def completed(self):
+        return self._actor.position == self._goal
+
+    def cannot_complete(self):
+        return len(self.path) == 0
 
 class MoveToRandomLocation():
     def __init__(self, actor, map):

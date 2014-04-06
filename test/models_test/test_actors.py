@@ -9,15 +9,6 @@ class TestActor(unittest.TestCase):
         self.assertEqual(a.x, 20)
         self.assertEqual(a.y, 30)
 
-    def test_it_picks_a_task_if_it_does_not_have_one(self):
-        a = Actor()
-        self.assert_(a.current_task == None, 'Should not start with a goal')
-
-        map = models.map.TileMap(10, 10)
-
-        a.update(map)
-        self.assert_(a.current_task is not None, 'Should have a goal')
-
     def test_it_has_a_name(self):
         a = Actor()
         self.assertTrue(len(a.name) > 0, "Should have a name")

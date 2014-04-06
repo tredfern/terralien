@@ -23,16 +23,14 @@ class Actor(pygsty.models.BaseModel):
         self.current_task = None
 
     def update(self, map):
-        if not self.current_task:
-            self.current_task = ai.tasks.MoveToRandomLocation(self, map)
-
-        self.current_task.next_step()
-        if self.current_task.completed():
-            models.event_log.Entry("arrived at her destination", created_by = self)
-            self.current_task = None
-        elif self.current_task.cannot_complete():
-            models.event_log.Entry("canceled her task (unreachable)", created_by = self)
-            self.current_task = None
+        if self.current_task:
+            self.current_task.next_step()
+            if self.current_task.completed():
+                models.event_log.Entry("arrived at her destination", created_by = self)
+                self.current_task = None
+            elif self.current_task.cannot_complete():
+                models.event_log.Entry("canceled her task (unreachable)", created_by = self)
+                self.current_task = None
 
         if(random.randint(0, 10) > 7):
             if self._current == 1:

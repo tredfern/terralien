@@ -106,6 +106,9 @@ class Tile():
     def change_terrain(self, terrain):
         self._terrain = terrain
 
+class MapPoint(pygsty.euclid.Point2):
+    pass
+    
 class Terrain():
     def __init__(self, name="UNKNOWN", passable=True, image=None ):
         self.name = name

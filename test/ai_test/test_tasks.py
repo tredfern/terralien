@@ -18,3 +18,14 @@ class TestChopTrees(unittest.TestCase):
         target_tree = models.statics.Tree(position=(12, 12))
         t = self.subject.find_target()
         self.assertEqual([target_tree], t)
+
+class TestMoveTo(unittest.TestCase):
+    def setUp(self):
+        self.actor = models.actors.Actor(position=(10, 10))
+        self.subject = ai.tasks.MoveTo(self.actor, target=models.map.MapPoint(20, 20))
+
+    def test_it_assigns_the_task_to_the_actor(self):
+        self.assertEqual(self.subject, self.actor.current_task)
+
+    def test_it_generates_a_path_to_the_target(self):
+        self.assertTrue(len(self.subject.path))

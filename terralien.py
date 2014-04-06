@@ -6,9 +6,13 @@ from pygsty.drawing import *
 
 import controllers
 import data
+import models
 
 def main():
     pygsty.start(1024, 768, False)
+
+    models.build_world()
+
     pygsty.engine().push_controller(pygsty.controllers.CameraController((100, 100), 100))
     pygsty.engine().push_controller(pygsty.controllers.PerformanceController())
     pygsty.engine().push_controller(controllers.GameController())
