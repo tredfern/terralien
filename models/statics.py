@@ -7,6 +7,9 @@ from models.map import TILE_SIZE
 
 
 tree_types = ["leaf", "dark_leaf", "conifer", "dark_conifer"]
+flower_types = ["flowers_one",
+    "flowers_two"]
+
 _match_map = {
     11: "_se",
     22: "_sw",
@@ -87,7 +90,7 @@ class Tree(pygsty.models.BaseModel):
                             match_score += 16
                         elif n.y == self.y - 1:
                             match_score += 128
-            
+
         pygsty.logger.debug("Match Score: {}".format(match_score))
         for t in _test_scores:
             if t & match_score == t:
@@ -133,3 +136,12 @@ class Wall(pygsty.models.BaseModel):
             return self.wall_type + _wall_map[match_score]
         else:
             return self.wall_type
+
+class Flower(pygsty.models.BaseModel):
+    def __init__(self, position):
+        super().__init__(position)
+        self.screen_offset_x = TILE_SIZE
+        self.screen_offset_y = TILE_SIZE
+
+        self.flower_type = random.choice(flower_types)
+        self.initSprite(data.plants[self.flower_type], pygsty.graphics.middleground_group)

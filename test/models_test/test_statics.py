@@ -68,7 +68,7 @@ class TestWall(unittest.TestCase):
 
         self.assertEqual(w_none.get_sprite_name(), "wood")
 
-        self.assertEqual(w_nsew.get_sprite_name(), "wood_nsew")
+        self.assertEqual(w_nsew.get_sprite_name(), "wood_ns")
         self.assertEqual(w_sew.get_sprite_name(), "wood_sew")
         self.assertEqual(w_nse.get_sprite_name(), "wood_nse")
         self.assertEqual(w_nsw.get_sprite_name(), "wood_nsw")

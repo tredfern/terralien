@@ -7,12 +7,14 @@ LAKES = 3
 LAKE_SIZE = 0.05
 FORESTS = 15
 FOREST_SIZE = 0.05
+PLANTS = 0.10
 
 def make_map(width, height):
     map = models.map.TileMap(width, height)
     fill_map(map, models.map.terrains["grass"])
     create_lakes(map, LAKES, int(width * height * LAKE_SIZE))
     create_forest(map, FORESTS, int(width * height * FOREST_SIZE))
+    create_plants(map, int(width * height * PLANTS))
     return map
 
 def fill_map(map, terrain):
@@ -60,3 +62,14 @@ def create_forest(map, forest_count, size):
     trees = pygsty.models.model_repository.find_all(find_trees)
     for t in trees:
         t.update_sprite()
+
+def create_plants(map, plant_count, size=2):
+    for l in range(plant_count):
+        current = map.randomTile()
+
+        for i in range(size):
+            neighbors = map.getNeighbors(current.point.x, current.point.y)
+
+            if current.terrain.passable and pygsty.models.model_repository.is_vacant((current.x, current.y)):
+                models.statics.Flower((current.x, current.y))
+                current = random.choice(neighbors)

@@ -48,6 +48,7 @@ _trees2 = pyglet.image.load("data/images/Map/Tree1.png")
 _tiles = pyglet.image.load("data/images/Map/Tile.png")
 _cursors = pyglet.image.load("data/images/gui/cursors.png")
 _walls = pyglet.image.load("data/images/Map/Wall.png")
+_plants = pyglet.image.load("data/images/Plants/Ground0.png")
 
 _h_rows = int(_humanoid.height / 16)
 _h_cols = int(_humanoid.width / 16)
@@ -59,6 +60,8 @@ _tile_cols = int(_tiles.width / 16)
 _tile_rows = int(_tiles.height / 16)
 _wall_cols = int(_walls.width / 16)
 _wall_rows = int(_walls.height / 16)
+_plant_cols = int(_plants.width / 16)
+_plant_rows = int(_plants.height / 16)
 
 pygsty.logger.info("Processing Images")
 #Chop up into image grid
@@ -69,7 +72,7 @@ _tree_grid = pyglet.image.ImageGrid(_trees, _t_rows, _t_cols)
 _tree_grid2 = pyglet.image.ImageGrid(_trees2, _t_rows, _t_cols)
 _tile_grid = pyglet.image.ImageGrid(_tiles, _tile_rows, _tile_cols)
 _wall_grid = pyglet.image.ImageGrid(_walls, _wall_rows, _wall_cols)
-
+_plant_grid = pyglet.image.ImageGrid(_plants, _plant_rows, _plant_cols)
 
 def get_floor_image(row, col):
     index = row * _f_cols + col
@@ -86,6 +89,10 @@ def get_tiles_image(row, col):
 def get_wall_image(row, col):
     index = row * _wall_cols + col
     return _wall_grid[index]
+
+def get_plant_image(row, col):
+    index = row * _plant_cols + col
+    return _plant_grid[index]
 
 cursors = {
     "default": _cursors
@@ -120,6 +127,17 @@ trees = {
     "conifer_blue_burnt": get_tree_image(5, 7),
     "cactus": get_tree_image(2, 3),
     "palm": get_tree_image(5,3)
+}
+
+plants = {
+    "flowers_one": get_plant_image(4, 0),
+    "flowers_two": get_plant_image(4, 1),
+    "flowers_three": get_plant_image(4, 2),
+    "flowers_four": get_plant_image(4, 3),
+    "flowers_five": get_plant_image(4, 4),
+    "flowers_six": get_plant_image(4, 5),
+    "flowers_seven": get_plant_image(4, 6),
+    "flowers_eight": get_plant_image(4, 7)
 }
 
 walls = {}

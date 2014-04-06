@@ -6,6 +6,21 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## April 6th
+
+After the update yesterday, I was able to plug walls in and have them work out
+and render fairly nicely. You can move around with the cursor and draw them in.
+I also changed the character to follow specific move orders issued by the keyboard
+now instead of randomly moving about. This is for some more elaborate testing
+later but also starts to make the character a bit more involved. Finally I through
+in some flowers to get another background item in the game for more atmosphere but
+also to start filling in the world a little bit even if it is nonsense. The more
+little things should help flush out areas where it's annoying to add simple items
+so that those areas get polished up in the code and reduce duplication.
+
+![Walls](screenshots/terralien20140406.png)
+
+
 ## April 5th
 
 A bunch of little progress that is starting to add up behind the scenes. It's
