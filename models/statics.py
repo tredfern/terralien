@@ -21,17 +21,22 @@ _match_map = {
 _test_scores = [255, 248, 214, 208, 107, 104, 31, 22, 11]
 
 _wall_map = {
+    2: "",
+    8: "_ew",
     10: "_nw",
+    16: "_ew",
     18: "_ne",
     24: "_ew",
     26: "_new",
+    64: "_ns",
     66: "_ns",
     72: "_sw",
     74: "_nsw",
     80: "_se",
     82: "_nse",
     88: "_sew",
-    90: "_nsew"
+    90: "_ns",
+    250: "_nsew"
 }
 
 #1, 2, 4
@@ -82,6 +87,7 @@ class Tree(pygsty.models.BaseModel):
                             match_score += 16
                         elif n.y == self.y - 1:
                             match_score += 128
+            
         pygsty.logger.debug("Match Score: {}".format(match_score))
         for t in _test_scores:
             if t & match_score == t:
