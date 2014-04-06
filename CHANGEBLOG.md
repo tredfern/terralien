@@ -6,6 +6,23 @@ I'm working on and where I am going. So hopefully by writing
 notes I can detail what I've been learning and provide a point
 to develop a more robust overview of this project in the future.
 
+## April 5th
+
+A bunch of little progress that is starting to add up behind the scenes. It's
+pretty easy to get building construction happening. So I wanted to start making
+walls. But in order to do that I needed to figure out what neighbors are around
+an object in order to pick the correct image. So I did the first cut of that
+work with forests. So now it will pick a more appropriate and interesting image
+for the forests. Potentially this method could handle even more sprite images
+for much more complex landscapes but for now, it's looking a lot more interesting.
+
+Also, this cleaned up a lot of duplicate trees and things which actually slowed
+things down considerably. Now there are much fewer objects to deal with in the
+repository for this scale of map. Which is good as well.
+
+![Complex Forests](screenshots/terralien20140405.png)
+
+
 ## April 2nd
 
 It's a small improvement but a good one. I've lightly integrated the pyglet-gui

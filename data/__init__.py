@@ -4,6 +4,18 @@ import pygsty
 import random
 import data.generators
 
+def make_tile_group(prefix, center_row, center_col, hash_map, image_func):
+    hash_map[prefix] = image_func(center_row, center_col)
+    hash_map[prefix + "_nw"]= image_func(center_row + 1, center_col - 1)
+    hash_map[prefix + "_n"]= image_func(center_row + 1, center_col)
+    hash_map[prefix + "_ne"]= image_func(center_row + 1, center_col + 1)
+    hash_map[prefix + "_w"]= image_func(center_row, center_col - 1)
+    hash_map[prefix + "_e"]= image_func(center_row, center_col + 1)
+    hash_map[prefix + "_sw"]= image_func(center_row - 1, center_col - 1)
+    hash_map[prefix + "_s"]= image_func(center_row - 1, center_col)
+    hash_map[prefix + "_se"]= image_func(center_row - 1, center_col + 1)
+
+
 #
 # Load Humanoid images
 #
@@ -16,6 +28,7 @@ _trees = pyglet.image.load("data/images/Map/Tree0.png")
 _trees2 = pyglet.image.load("data/images/Map/Tree1.png")
 _tiles = pyglet.image.load("data/images/Map/Tile.png")
 _cursors = pyglet.image.load("data/images/gui/cursors.png")
+_walls = pyglet.image.load("data/images/Map/Wall.png")
 
 _h_rows = int(_humanoid.height / 16)
 _h_cols = int(_humanoid.width / 16)
@@ -25,6 +38,8 @@ _t_cols = int(_trees.width / 16)
 _t_rows = int(_trees.height / 16)
 _tile_cols = int(_tiles.width / 16)
 _tile_rows = int(_tiles.height / 16)
+_wall_cols = int(_walls.width / 16)
+_wall_rows = int(_walls.height / 16)
 
 pygsty.logger.info("Processing Images")
 #Chop up into image grid
@@ -34,6 +49,7 @@ _floor_grid = pyglet.image.ImageGrid(_floor, _f_rows, _f_cols)
 _tree_grid = pyglet.image.ImageGrid(_trees, _t_rows, _t_cols)
 _tree_grid2 = pyglet.image.ImageGrid(_trees2, _t_rows, _t_cols)
 _tile_grid = pyglet.image.ImageGrid(_tiles, _tile_rows, _tile_cols)
+_wall_grid = pyglet.image.ImageGrid(_walls, _wall_rows, _wall_cols)
 
 
 def get_floor_image(row, col):
@@ -82,3 +98,10 @@ trees = {
     "cactus": get_tree_image(2, 3),
     "palm": get_tree_image(5,3)
 }
+
+make_tile_group("leaf_forest", 25, 1, trees, get_tree_image)
+make_tile_group("burnt_forest", 25, 5, trees, get_tree_image)
+make_tile_group("dark_leaf_forest", 22, 1, trees, get_tree_image)
+make_tile_group("burnt_dark_forest", 22, 5, trees, get_tree_image)
+make_tile_group("conifer_forest", 13, 1, trees, get_tree_image)
+make_tile_group("dark_conifer_forest", 10, 1, trees, get_tree_image)

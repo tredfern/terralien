@@ -8,8 +8,6 @@ LAKE_SIZE = 0.05
 FORESTS = 15
 FOREST_SIZE = 0.05
 
-trees = []
-
 def make_map(width, height):
     map = models.map.TileMap(width, height)
     fill_map(map, models.map.terrains["grass"])
@@ -50,8 +48,15 @@ def create_forest(map, forest_count, size):
             current = map.randomTile()
 
         for i in range(size):
-            if current.terrain.passable:
+            if current.terrain.passable and pygsty.models.model_repository.is_vacant((current.x, current.y)):
                 pygsty.logger.info("Adding tree to {}".format(current))
                 models.statics.Tree((current.x, current.y), forest_type)
             neighbors = map.getNeighbors(current.point.x, current.point.y)
             current = random.choice(neighbors)
+
+    def find_trees(test_obj):
+        return type(test_obj) is models.statics.Tree
+
+    trees = pygsty.models.model_repository.find_all(find_trees)
+    for t in trees:
+        t.update_sprite()
