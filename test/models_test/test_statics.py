@@ -40,3 +40,43 @@ class TestTree(unittest.TestCase):
         self.assertEqual(t_sw.get_sprite_name(), "leaf_forest_sw")
         self.assertEqual(t_s.get_sprite_name(), "leaf_forest_s")
         self.assertEqual(t_se.get_sprite_name(), "leaf_forest_se")
+
+class TestWall(unittest.TestCase):
+    def test_it_can_figure_out_its_proper_sprite_by_neighbors(self):
+        pygsty.models.model_repository.clear()
+        pygsty.models.model_repository.set_position_set_size(100, 100)
+        w_none = models.statics.Wall(position=(30, 30), wall_type="wood")
+
+        w_nsew = models.statics.Wall(position=(10, 10), wall_type="wood")
+        w_se2 = models.statics.Wall(position=(9, 11), wall_type="wood")
+        w_sew = models.statics.Wall(position=(10, 11), wall_type="wood")
+        w_sw2 = models.statics.Wall(position=(11, 11), wall_type="wood")
+        w_nse = models.statics.Wall(position=(9, 10), wall_type="wood")
+        w_nsw = models.statics.Wall(position=(11, 10), wall_type="wood")
+        w_ne2 = models.statics.Wall(position=(9, 9), wall_type="wood")
+        w_new = models.statics.Wall(position=(10, 9), wall_type="wood")
+        w_nw2 = models.statics.Wall(position=(11, 9), wall_type="wood")
+
+        w_se = models.statics.Wall(position=(20, 20), wall_type="wood")
+        w_ns = models.statics.Wall(position=(20, 19), wall_type="wood")
+        w_ns2 = models.statics.Wall(position=(22, 19), wall_type="wood")
+        w_ne = models.statics.Wall(position=(20, 18), wall_type="wood")
+        w_ew = models.statics.Wall(position=(21, 20), wall_type="wood")
+        w_ew2 = models.statics.Wall(position=(21, 18), wall_type="wood")
+        w_sw = models.statics.Wall(position=(22, 20), wall_type="wood")
+        w_nw = models.statics.Wall(position=(22, 18), wall_type="wood")
+
+        self.assertEqual(w_none.get_sprite_name(), "wood")
+
+        self.assertEqual(w_nsew.get_sprite_name(), "wood_nsew")
+        self.assertEqual(w_sew.get_sprite_name(), "wood_sew")
+        self.assertEqual(w_nse.get_sprite_name(), "wood_nse")
+        self.assertEqual(w_nsw.get_sprite_name(), "wood_nsw")
+        self.assertEqual(w_new.get_sprite_name(), "wood_new")
+
+        self.assertEqual(w_se.get_sprite_name(), "wood_se")
+        self.assertEqual(w_ns.get_sprite_name(), "wood_ns")
+        self.assertEqual(w_ne.get_sprite_name(), "wood_ne")
+        self.assertEqual(w_ew.get_sprite_name(), "wood_ew")
+        self.assertEqual(w_sw.get_sprite_name(), "wood_sw")
+        self.assertEqual(w_nw.get_sprite_name(), "wood_nw")

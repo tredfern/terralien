@@ -49,8 +49,18 @@ class GameController(pygsty.controllers.BaseController):
             key.W: self.cursor.move_up,
             key.S: self.cursor.move_down,
             key.D: self.cursor.move_right,
-            key.B: self.build_stockpile
+            key.B: self.build_stockpile,
+            key.T: self.build_wall,
         }
 
     def build_stockpile(self):
         self.buildings.append(models.stockpiles.Stockpile(self.cursor.x, self.cursor.y, 3, 3))
+
+    def build_wall(self):
+        if pygsty.models.model_repository.is_vacant((self.cursor.x, self.cursor.y)):
+            self.buildings.append(models.statics.Wall(position=(self.cursor.x, self.cursor.y), wall_type="wood"))
+
+        n = pygsty.models.model_repository.get_neighbors(self.cursor.x, self.cursor.y)
+        for w in n:
+            if type(w) is models.statics.Wall:
+                w.update_sprite()

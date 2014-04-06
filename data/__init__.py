@@ -16,6 +16,25 @@ def make_tile_group(prefix, center_row, center_col, hash_map, image_func):
     hash_map[prefix + "_se"]= image_func(center_row - 1, center_col + 1)
 
 
+
+def make_wall_tile_group(prefix, center_row, center_col, hash_map, image_func):
+    #Walls are different because they focus on where the connect too not
+    #What part of the map they represent
+    hash_map[prefix] = image_func(center_row, center_col)
+    hash_map[prefix + "_se"]= image_func(center_row + 1, center_col - 1)
+    hash_map[prefix + "_ew"]= image_func(center_row + 1, center_col)
+    hash_map[prefix + "_sw"]= image_func(center_row + 1, center_col + 1)
+    hash_map[prefix + "_ns"]= image_func(center_row, center_col - 1)
+    hash_map[prefix + "_ne"]= image_func(center_row - 1, center_col - 1)
+    hash_map[prefix + "_nw"]= image_func(center_row - 1, center_col + 1)
+
+    hash_map[prefix + "_nsew"]= image_func(center_row, center_col + 3)
+    hash_map[prefix + "_nse"]= image_func(center_row, center_col + 2)
+    hash_map[prefix + "_nsw"]= image_func(center_row, center_col + 4)
+    hash_map[prefix + "_sew"]= image_func(center_row +1, center_col + 3)
+    hash_map[prefix + "_new"]= image_func(center_row - 1, center_col + 3)
+
+
 #
 # Load Humanoid images
 #
@@ -64,6 +83,10 @@ def get_tiles_image(row, col):
     index = row * _tile_cols + col
     return _tile_grid[index]
 
+def get_wall_image(row, col):
+    index = row * _wall_cols + col
+    return _wall_grid[index]
+
 cursors = {
     "default": _cursors
 }
@@ -99,9 +122,13 @@ trees = {
     "palm": get_tree_image(5,3)
 }
 
+walls = {}
+
 make_tile_group("leaf_forest", 25, 1, trees, get_tree_image)
 make_tile_group("burnt_forest", 25, 5, trees, get_tree_image)
 make_tile_group("dark_leaf_forest", 22, 1, trees, get_tree_image)
 make_tile_group("burnt_dark_forest", 22, 5, trees, get_tree_image)
 make_tile_group("conifer_forest", 13, 1, trees, get_tree_image)
 make_tile_group("dark_conifer_forest", 10, 1, trees, get_tree_image)
+
+make_wall_tile_group("wood", 46, 8, walls, get_wall_image)
