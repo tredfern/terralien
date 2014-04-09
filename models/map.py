@@ -1,11 +1,13 @@
+TILE_SIZE = 16
+
 import random
 import pygsty.models
 import pygsty.graphics
 import pygsty.euclid
 import data
 import pyglet
+import models.statics
 
-TILE_SIZE = 16
 
 class TileMap():
     def __init__(self, width=0, height=0):
@@ -106,9 +108,18 @@ class Tile():
     def change_terrain(self, terrain):
         self._terrain = terrain
 
+    @property
+    def passable(self):
+        occupiers = pygsty.models.model_repository.find_by_position((self.x, self.y))
+        wall = False
+        for o in occupiers:
+            if type(o) is models.statics.Wall:
+                wall = True
+        return self._terrain.passable and not wall
+
 class MapPoint(pygsty.euclid.Point2):
     pass
-    
+
 class Terrain():
     def __init__(self, name="UNKNOWN", passable=True, image=None ):
         self.name = name

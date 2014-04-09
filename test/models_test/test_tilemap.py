@@ -71,6 +71,21 @@ class TestTile(unittest.TestCase):
         t = Tile((20, 30), terrains["grass"] )
         self.assertEqual("Tile( (20, 30) GRASS )", repr(t), 'Tiles should represent themselves clearly')
 
+    def test_it_is_not_passable_if_the_terrain_says_its_not(self):
+        tile = Tile((20, 30), terrains["water"])
+        self.assertFalse(tile.passable)
+
+    def test_it_is_passable_on_walkable_terrains(self):
+        pygsty.models.model_repository.clear()
+        tile = Tile((20, 30), terrains["grass"])
+        self.assertTrue(tile.passable)
+
+    def test_it_is_not_passable_if_there_is_a_wall_in_the_same_square(self):
+        pygsty.models.model_repository.clear()
+        tile = Tile((20, 30), terrains["grass"])
+        wall = models.statics.Wall((20, 30), "wood")
+        self.assertFalse(tile.passable)
+
 class TestTerrain(unittest.TestCase):
     def test_it_defaults_to_options_that_let_us_know_nothing_has_been_set(self):
         t = Terrain()

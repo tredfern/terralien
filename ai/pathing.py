@@ -59,7 +59,7 @@ def find_path(start, end, map, max_length = 10):
         test_tiles = map.getNeighbors(best_node.point.x, best_node.point.y)
 
         for tile in test_tiles:
-            if not tile.terrain.passable:
+            if not tile.passable:
                 continue
 
             test_node = None
